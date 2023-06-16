@@ -1,9 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
 import { createWorker } from "tesseract.js";
+import CodeEditor from "@/components/CodeEditor";
 
 export default function Home() {
   const [workerObj, setWorkerObj] = useState(null);
+  const [extractedCode, setExtractedCode] = useState("");
   const extractCode = async (event) => {
     event.preventDefault();
 
@@ -16,15 +18,14 @@ export default function Home() {
     const reader = new FileReader();
     console.log(reader);
     reader.onload = async () => {
-      const { data } = await workerObj.recognize(
-        // "https://code.visualstudio.com/assets/docs/getstarted/themes/with-semantic-highlighting.png"
-        reader.result
-      );
-      console.log(data.text);
+      const {
+        data: { text },
+      } = await workerObj.recognize(reader.result);
+      console.log(text);
+      setExtractedCode(text);
     };
 
     reader.readAsDataURL(file);
-    // const { data } = await workerObj.recognize(event.target.files[0]);
   };
 
   const loadWorker = async () => {
@@ -48,13 +49,43 @@ export default function Home() {
     <div>
       <h1>Code Extractor</h1>
 
-      <div className="flex flex-col">
-        <form onSubmit={extractCode}>
-          <label htmlFor="">Enter the code image</label>
-          <input type="file" accept=".jpg, .jepg, .png" />
+      <form onSubmit={extractCode}>
+        <div className="col-span-full">
+          <label
+            htmlFor="cover-photo"
+            className="block text-sm font-medium leading-6 text-gray-900"
+          >
+            Enter the code image
+          </label>
+          <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+            <div className="text-center">
+              <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                <label
+                  htmlFor="file-upload"
+                  className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                >
+                  <span>Upload a file</span>
+                  <input
+                    id="file-upload"
+                    name="file-upload"
+                    type="file"
+                    className="sr-only"
+                    accept=".jpg, .jepg, .png"
+                  />
+                </label>
+                <p className="pl-1">or drag and drop</p>
+              </div>
+              <p className="text-xs leading-5 text-gray-600">
+                PNG, JPG up to 10MB
+              </p>
+            </div>
+          </div>
+
           <button type="submit">Extract Code</button>
-        </form>
-      </div>
+        </div>
+      </form>
+
+      <CodeEditor codeValue={extractedCode} />
     </div>
   );
 }
