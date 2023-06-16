@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import CodeMirror from "@uiw/react-codemirror";
+import ThemeSelector from "./ThemeSelector";
 import { javascript } from "@codemirror/lang-javascript";
 //Themes
 import { androidstudio } from "@uiw/codemirror-theme-androidstudio";
@@ -23,6 +24,7 @@ const CodeEditor = ({ codeValue }) => {
         extensions={[javascript({ jsx: true })]}
         data-gramm="false"
       />
+      <ThemeSelector />
     </div>
   );
 };
