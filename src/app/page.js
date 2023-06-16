@@ -21,7 +21,7 @@ export default function Home() {
       const {
         data: { text },
       } = await workerObj.recognize(reader.result);
-      console.log(text);
+      // console.log(text);
       setExtractedCode(text);
     };
 
