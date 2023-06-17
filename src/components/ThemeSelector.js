@@ -1,10 +1,21 @@
-import React from "react";
+import Select from "react-select";
 
 const ThemeSelector = () => {
   return (
     <div>
       <label htmlFor="themeSelect">Select Theme</label>
-      <select name="themeSelect" id="themeSelect">
+      <Select
+        className="basic-single"
+        classNamePrefix="select"
+        defaultValue={"androidstudio"}
+        isSearchable={true}
+        name="color"
+        options={[
+          { value: "androidstudio", label: "androidstudio" },
+          { value: "androidstudios", label: "androidstudios" },
+        ]}
+      />
+      {/* <select name="themeSelect" id="themeSelect">
         <option value="androidstudio">Android Studio</option>
         <option value="dracula">Dracula</option>
         <option value="eclipse">Eclipse</option>
@@ -16,7 +27,7 @@ const ThemeSelector = () => {
         <option value="vscodeDark">Visual Studio Code</option>
         <option value="xcodeDark">X Code Dark</option>
         <option value="xcodeLight">X Code Light</option>
-      </select>
+      </select> */}
     </div>
   );
 };

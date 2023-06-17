@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
+import { useContext } from "react";
+import { CodeEditorContext } from "@/context/CodeEditorContext";
 import CodeMirror from "@uiw/react-codemirror";
 import ThemeSelector from "./ThemeSelector";
 import LanguageSelector from "./LanguageSelector";
 import { javascript } from "@codemirror/lang-javascript";
-import { langs } from "@uiw/codemirror-extensions-langs";
 //Themes
 import { androidstudio } from "@uiw/codemirror-theme-androidstudio";
 import { dracula } from "@uiw/codemirror-theme-dracula";
@@ -17,7 +17,8 @@ import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import { xcodeDark } from "@uiw/codemirror-theme-xcode";
 import { xcodeLight } from "@uiw/codemirror-theme-xcode";
 const CodeEditor = ({ codeValue }) => {
-  const [extensions, setExtensions] = useState(null);
+  const { editorSettings, updateTheme, updateLanguage } =
+    useContext(CodeEditorContext);
   function handleLangChange(langs) {
     try {
       import(`code-example/txt/sample.${lang.toLocaleLowerCase()}.txt`)
@@ -57,6 +58,11 @@ const CodeEditor = ({ codeValue }) => {
       />
       <ThemeSelector />
       <LanguageSelector />
+      {/* <h1>Theme: {editorSettings.theme}</h1>
+      <button onClick={() => updateTheme("androidstudio")}>Update Theme</button>
+
+      <h1>Language: {editorSettings.language}</h1>
+      <button onClick={() => updateLanguage("php")}>Update Language</button> */}
     </div>
   );
 };

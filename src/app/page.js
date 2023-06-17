@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { createWorker } from "tesseract.js";
 import CodeEditor from "@/components/CodeEditor";
-
+import CodeEditorContextProvider from "@/context/CodeEditorContext";
 export default function Home() {
   const [workerObj, setWorkerObj] = useState(null);
   const [extractedCode, setExtractedCode] = useState("");
@@ -38,6 +38,7 @@ export default function Home() {
     await worker.loadLanguage("eng");
     await worker.initialize("eng");
   };
+
   useEffect(() => {
     loadWorker();
 
@@ -84,8 +85,9 @@ export default function Home() {
           <button type="submit">Extract Code</button>
         </div>
       </form>
-
-      <CodeEditor codeValue={extractedCode} />
+      <CodeEditorContextProvider>
+        <CodeEditor codeValue={extractedCode} />
+      </CodeEditorContextProvider>
     </div>
   );
 }
