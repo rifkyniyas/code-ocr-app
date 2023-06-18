@@ -48,14 +48,17 @@ const CodeEditor = ({ codeValue }) => {
   // }, []);
 
   return (
-    <div className="max-w-lg mx-auto rounded-md overflow-hidden">
-      <CodeMirror
-        value={codeValue}
-        height="200px"
-        theme={androidstudio}
-        extensions={[javascript({ jsx: true })]}
-        data-gramm="false"
-      />
+    <div>
+      <div className="max-w-lg mx-auto rounded-md overflow-hidden">
+        <CodeMirror
+          value={codeValue}
+          height="200px"
+          theme={androidstudio}
+          extensions={[javascript({ jsx: true })]}
+          data-gramm="false"
+        />
+      </div>
+
       <ThemeSelector />
       <LanguageSelector />
       {/* <h1>Theme: {editorSettings.theme}</h1>
