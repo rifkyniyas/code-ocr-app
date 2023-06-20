@@ -21,7 +21,7 @@ const LanguageSelector = () => {
         defaultValue={languageOptions[42]} //Select JavaScript
         isSearchable={true}
         name="languageSelector"
-        onChange={(newLang) => updateLanguage(newLang)}
+        onChange={(newLang) => updateLanguage(newLang.value)}
         options={languageOptions}
       />
     </div>

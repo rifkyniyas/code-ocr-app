@@ -5,7 +5,7 @@ export const CodeEditorContext = createContext();
 const CodeEditorContextProvider = ({ children }) => {
   const [editorSettings, setEditorSettings] = useState({
     theme: "vscodeDark",
-    language: "",
+    language: "javascript",
   });
 
   const updateTheme = (newTheme) => {

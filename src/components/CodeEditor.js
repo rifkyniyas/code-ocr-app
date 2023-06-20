@@ -3,7 +3,7 @@ import { CodeEditorContext } from "@/context/CodeEditorContext";
 import CodeMirror from "@uiw/react-codemirror";
 import ThemeSelector from "./ThemeSelector";
 import LanguageSelector from "./LanguageSelector";
-import { javascript } from "@codemirror/lang-javascript";
+import { loadLanguage } from "@uiw/codemirror-extensions-langs";
 //Themes
 import { androidstudio } from "@uiw/codemirror-theme-androidstudio";
 import { dracula } from "@uiw/codemirror-theme-dracula";
@@ -39,7 +39,7 @@ const CodeEditor = ({ codeValue }) => {
           value={codeValue}
           height="200px"
           theme={themeMap[editorSettings.theme] || vscodeDark}
-          extensions={[javascript({ jsx: true })]}
+          extensions={[loadLanguage(editorSettings.language)]}
           data-gramm="false"
         />
       </div>
