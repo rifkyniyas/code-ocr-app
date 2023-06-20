@@ -17,35 +17,20 @@ import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import { xcodeDark } from "@uiw/codemirror-theme-xcode";
 import { xcodeLight } from "@uiw/codemirror-theme-xcode";
 const CodeEditor = ({ codeValue }) => {
-  const { editorSettings, updateTheme, updateLanguage } =
-    useContext(CodeEditorContext);
-  function handleLangChange(langs) {
-    try {
-      import(`code-example/txt/sample.${lang.toLocaleLowerCase()}.txt`)
-        .then((data) => {
-          setCode(data.default);
-          if (langs[lang]) {
-            setExtensions([color, langs[lang]()]);
-          }
-          setMode(lang);
-        })
-        .catch((err) => {
-          if (langs[lang]) {
-            setExtensions([color, langs[lang]()]);
-          } else {
-            setExtensions([color]);
-          }
-          setMode(lang);
-          setCode("");
-        });
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
-
-  // useEffect(() => {
-  //   handleLangChange("javascript");
-  // }, []);
+  const { editorSettings } = useContext(CodeEditorContext);
+  const themeMap = {
+    androidstudio,
+    dracula,
+    eclipse,
+    githubDark,
+    githubLight,
+    materialDark,
+    materialLight,
+    sublime,
+    vscodeDark,
+    xcodeDark,
+    xcodeLight,
+  };
 
   return (
     <div>
@@ -53,7 +38,7 @@ const CodeEditor = ({ codeValue }) => {
         <CodeMirror
           value={codeValue}
           height="200px"
-          theme={androidstudio}
+          theme={themeMap[editorSettings.theme] || vscodeDark}
           extensions={[javascript({ jsx: true })]}
           data-gramm="false"
         />
@@ -61,11 +46,6 @@ const CodeEditor = ({ codeValue }) => {
 
       <ThemeSelector />
       <LanguageSelector />
-      {/* <h1>Theme: {editorSettings.theme}</h1>
-      <button onClick={() => updateTheme("androidstudio")}>Update Theme</button>
-
-      <h1>Language: {editorSettings.language}</h1>
-      <button onClick={() => updateLanguage("php")}>Update Language</button> */}
     </div>
   );
 };

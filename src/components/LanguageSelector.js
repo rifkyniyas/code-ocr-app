@@ -1,7 +1,10 @@
+import { useContext } from "react";
+import { CodeEditorContext } from "@/context/CodeEditorContext";
 import { langs } from "@uiw/codemirror-extensions-langs";
 import Select from "react-select";
 
 const LanguageSelector = () => {
+  const { updateLanguage } = useContext(CodeEditorContext);
   const languageOptions = Object.keys(langs)
     .sort()
     .map((lang) => ({
@@ -17,8 +20,8 @@ const LanguageSelector = () => {
         classNamePrefix="select"
         defaultValue={languageOptions[42]} //Select JavaScript
         isSearchable={true}
-        isClearable={true}
         name="languageSelector"
+        onChange={(newLang) => updateLanguage(newLang)}
         options={languageOptions}
       />
     </div>

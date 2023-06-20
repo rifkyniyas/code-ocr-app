@@ -1,6 +1,9 @@
+import { useContext } from "react";
+import { CodeEditorContext } from "@/context/CodeEditorContext";
 import Select from "react-select";
 
 const ThemeSelector = () => {
+  const { updateTheme } = useContext(CodeEditorContext);
   const themeOptions = [
     { value: "androidstudio", label: "Android Studio" },
     { value: "dracula", label: "Dracula" },
@@ -24,6 +27,10 @@ const ThemeSelector = () => {
         isSearchable={true}
         isClearable={true}
         name="editorTheme"
+        onChange={(newTheme) => {
+          // console.log(newTheme);
+          updateTheme(newTheme.value);
+        }}
         options={themeOptions}
       />
     </div>
