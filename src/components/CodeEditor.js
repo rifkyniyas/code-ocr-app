@@ -1,6 +1,8 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CodeEditorContext } from "@/context/CodeEditorContext";
 import CodeMirror from "@uiw/react-codemirror";
+import prettier from "prettier/standalone";
+import parserBabel from "prettier/parser-babel";
 import ThemeSelector from "./ThemeSelector";
 import LanguageSelector from "./LanguageSelector";
 import { loadLanguage } from "@uiw/codemirror-extensions-langs";
@@ -16,7 +18,8 @@ import { sublime } from "@uiw/codemirror-theme-sublime";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import { xcodeDark } from "@uiw/codemirror-theme-xcode";
 import { xcodeLight } from "@uiw/codemirror-theme-xcode";
-const CodeEditor = ({ codeValue }) => {
+const CodeEditor = ({ code }) => {
+  const [codeValue, setCodeValue] = useState(code);
   const { editorSettings } = useContext(CodeEditorContext);
   const themeMap = {
     androidstudio,
@@ -32,6 +35,24 @@ const CodeEditor = ({ codeValue }) => {
     xcodeLight,
   };
 
+  const formatCode = (code) => {
+    try {
+      return prettier.format(code, {
+        parser: "babel",
+        plugins: [parserBabel],
+      });
+    } catch (error) {
+      console.error("Error formatting code:", error);
+      return code;
+    }
+  };
+
+  const handleChange = (value, viewUpdate) => {
+    setCodeValue(value);
+    // const formattedCode = formatCode(value);
+    // setCodeValue(formattedCode);
+  };
+
   return (
     <div>
       <div className="max-w-lg mx-auto rounded-md overflow-hidden">
@@ -41,11 +62,15 @@ const CodeEditor = ({ codeValue }) => {
           theme={themeMap[editorSettings.theme] || vscodeDark}
           extensions={[loadLanguage(editorSettings.language)]}
           data-gramm="false"
+          onChange={handleChange}
         />
       </div>
 
       <ThemeSelector />
       <LanguageSelector />
+      <button onClick={() => setCodeValue(formatCode(codeValue))}>
+        Format Code
+      </button>
     </div>
   );
 };

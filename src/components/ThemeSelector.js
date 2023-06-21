@@ -25,7 +25,6 @@ const ThemeSelector = () => {
         classNamePrefix="select"
         defaultValue={themeOptions[8]} //Select VS code
         isSearchable={true}
-        isClearable={true}
         name="editorTheme"
         onChange={(newTheme) => {
           // console.log(newTheme);
