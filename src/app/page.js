@@ -1,8 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
+import CodeEditorContextProvider from "@/context/CodeEditorContext";
 import { createWorker } from "tesseract.js";
 import CodeEditor from "@/components/CodeEditor";
-import CodeEditorContextProvider from "@/context/CodeEditorContext";
+import CropImage from "@/components/CropImage";
 export default function Home() {
   const [workerObj, setWorkerObj] = useState(null);
   const [extractedCode, setExtractedCode] = useState("");
@@ -88,6 +89,8 @@ export default function Home() {
       <CodeEditorContextProvider>
         <CodeEditor codeValue={extractedCode} />
       </CodeEditorContextProvider>
+
+      <CropImage />
     </div>
   );
 }
