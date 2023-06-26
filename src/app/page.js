@@ -7,27 +7,9 @@ import CropImage from "@/components/CropImage";
 export default function Home() {
   const [workerObj, setWorkerObj] = useState(null);
   const [extractedCode, setExtractedCode] = useState("");
-  const extractCode = async (event) => {
-    event.preventDefault();
 
-    const fileInput = event.target.querySelector('input[type="file"]');
-    const file = fileInput.files[0];
-
-    console.log(file);
-    if (!file) return console.log("No file inputs detected");
-
-    const reader = new FileReader();
-    console.log(reader);
-    reader.onload = async () => {
-      const {
-        data: { text },
-      } = await workerObj.recognize(reader.result);
-      // console.log(text);
-      setExtractedCode(text);
-    };
-
-    reader.readAsDataURL(file);
-  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const triggerModal = () => setIsModalOpen((prevState) => !prevState);
 
   const loadWorker = async () => {
     const worker = await createWorker({
@@ -47,6 +29,28 @@ export default function Home() {
       await workerObj.terminate();
     };
   }, []);
+
+  const extractCode = async (event) => {
+    event.preventDefault();
+
+    const fileInput = event.target.querySelector('input[type="file"]');
+    const file = fileInput.files[0];
+
+    console.log(file);
+    if (!file) return console.log("No file inputs detected");
+
+    const reader = new FileReader();
+    console.log(reader);
+    reader.onload = async () => {
+      const {
+        data: { text },
+      } = await workerObj.recognize(reader.result);
+      setExtractedCode(text);
+    };
+
+    reader.readAsDataURL(file);
+  };
+
   return (
     <div>
       <h1>Code Extractor</h1>
@@ -73,6 +77,7 @@ export default function Home() {
                     type="file"
                     className="sr-only"
                     accept=".jpg, .jepg, .png"
+                    multiple
                   />
                 </label>
                 <p className="pl-1">or drag and drop</p>
@@ -90,7 +95,7 @@ export default function Home() {
         <CodeEditor codeValue={extractedCode} />
       </CodeEditorContextProvider>
 
-      <CropImage />
+      <CropImage isModalOpen={isModalOpen} triggerModal={triggerModal} />
     </div>
   );
 }

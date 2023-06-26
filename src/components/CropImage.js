@@ -2,23 +2,18 @@ import { useRef, useState } from "react";
 import Modal from "./Modal";
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
-const CropImage = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openModal = () => {
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+const CropImage = ({ isModalOpen, triggerModal }) => {
+  const [preview, setPreview] = useState("");
   const cropperRef = useRef();
+  const handleCrop = () => {
+    const cropper = cropperRef.current.cropper;
+    if (typeof cropper.getCroppedCanvas() === "undefined") return;
+    setPreview(cropper.getCroppedCanvas().toDataURL());
+  };
+
   return (
     <>
-      <button type="button" onClick={openModal}>
-        Open regular modal
-      </button>
-      <Modal isOpen={isOpen} onClose={closeModal}>
+      <Modal>
         <Cropper
           src="https://raw.githubusercontent.com/roadmanfong/react-cropper/master/example/img/child.jpg"
           style={{ height: 400, width: "100%" }}
@@ -28,6 +23,8 @@ const CropImage = () => {
           // crop={sonCrop}
           ref={cropperRef}
         />
+        <button onClick={handleCrop}>Crop</button>
+        {preview && <img src={preview} alt="Cropped Preview" />}
       </Modal>
     </>
   );

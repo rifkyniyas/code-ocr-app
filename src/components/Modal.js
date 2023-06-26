@@ -15,7 +15,7 @@ const Modal = ({ isOpen, onClose, children }) => {
             <div className="relative p-6 flex-auto">{children}</div>
             {/*footer*/}
             <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-              <button>Preview</button>
+              <button onClick={onClose}>Close</button>
             </div>
           </div>
         </div>
