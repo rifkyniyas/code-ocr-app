@@ -2,8 +2,9 @@ import { useRef, useState } from "react";
 import Modal from "./Modal";
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
-const CropImage = ({ isModalOpen, triggerModal }) => {
-  const [preview, setPreview] = useState("");
+const CropImage = ({ triggerModal, imageData }) => {
+  const [preview, setPreview] = useState(null);
+  const [images, setImages] = useState(imageData);
   const cropperRef = useRef();
   const handleCrop = () => {
     const cropper = cropperRef.current.cropper;
@@ -13,9 +14,9 @@ const CropImage = ({ isModalOpen, triggerModal }) => {
 
   return (
     <>
-      <Modal>
+      <Modal isOpen={true} onClose={triggerModal}>
         <Cropper
-          src="https://raw.githubusercontent.com/roadmanfong/react-cropper/master/example/img/child.jpg"
+          src={images}
           style={{ height: 400, width: "100%" }}
           // Cropper.js options
           initialAspectRatio={16 / 9}
