@@ -47,15 +47,13 @@ const CodeEditor = ({ code }) => {
     }
   };
 
-  const handleChange = (value, viewUpdate) => {
+  const handleChange = (value) => {
     setCodeValue(value);
-    // const formattedCode = formatCode(value);
-    // setCodeValue(formattedCode);
   };
 
   return (
     <div>
-      <div className="max-w-lg mx-auto rounded-md overflow-hidden">
+      <div className="max-w-3xl mx-auto rounded-md overflow-hidden">
         <CodeMirror
           value={codeValue}
           height="200px"

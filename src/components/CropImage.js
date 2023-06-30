@@ -10,6 +10,7 @@ const CropImage = ({ triggerModal, imageData }) => {
     const cropper = cropperRef.current.cropper;
     if (typeof cropper.getCroppedCanvas() === "undefined") return;
     setPreview(cropper.getCroppedCanvas().toDataURL());
+    console.log("Extracted" + cropper.getCroppedCanvas().toDataURL());
   };
 
   return (
@@ -21,7 +22,6 @@ const CropImage = ({ triggerModal, imageData }) => {
           // Cropper.js options
           initialAspectRatio={16 / 9}
           guides={false}
-          // crop={sonCrop}
           ref={cropperRef}
         />
         <button onClick={handleCrop}>Crop</button>

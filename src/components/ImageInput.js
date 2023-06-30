@@ -1,23 +1,24 @@
-import { useState } from "react";
-import CropImage from "./CropImage";
+import { useContext } from "react";
+import { ImageDataContext } from "@/context/ImageDataContext";
 import { readImageFile } from "@/utilities/imageUtils";
+import CropImage from "./CropImage";
 const ImageInput = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const triggerModal = () => setIsModalOpen((prevState) => !prevState);
-  const [imageData, setImageData] = useState(null);
+  const { updateImageData, imageData } = useContext(ImageDataContext);
+
   const handleImageUpload = async (event) => {
     event.preventDefault();
 
-    const files = event.target.querySelector('input[type="file"]').files;
-    const data = await readImageFile(files[0]);
-    console.log(data);
-    setImageData(data);
-    triggerModal();
-
-    // if (!file) return console.log("No file inputs detected");
+    const imageFile = event.target.files[0];
+    const imageData = await readImageFile(imageFile);
+    console.log(imageFile);
+    updateImageData({
+      name: imageFile.name,
+      originalData: imageData,
+      isCropped: false,
+    });
   };
   return (
-    <form onSubmit={handleImageUpload}>
+    <form onSubmit={(e) => e.preventDefault()}>
       <div className="col-span-full">
         <label
           htmlFor="cover-photo"
@@ -39,7 +40,7 @@ const ImageInput = () => {
                   type="file"
                   className="sr-only"
                   accept=".jpg, .jepg, .png"
-                  multiple
+                  onChange={handleImageUpload}
                 />
               </label>
               <p className="pl-1">or drag and drop</p>
@@ -47,12 +48,12 @@ const ImageInput = () => {
             <p className="text-xs leading-5 text-gray-600">PNG, JPG</p>
           </div>
         </div>
-
-        <button type="submit">Begin Extraction</button>
       </div>
-      {isModalOpen && (
-        <CropImage triggerModal={triggerModal} imageData={imageData} />
-      )}
+      <p>{imageData.name} </p>
+      <p>{imageData.originalData}</p>
+      <p>{imageData.isCropped}</p>
+      <p>{imageData.croppedData}</p>
+      {imageData.name !== "" && !imageData.isCropped && <CropImage />}
     </form>
   );
 };
