@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.1.9",
+    "@reduxjs/toolkit": "^1.9.5",
     "@uiw/codemirror-extensions-langs": "^4.21.3",
     "@uiw/codemirror-theme-androidstudio": "^4.21.3",
     "@uiw/codemirror-theme-dracula": "^4.21.3",
@@ -29,6 +30,7 @@
     "react": "18.2.0",
     "react-cropper": "^2.3.3",
     "react-dom": "18.2.0",
+    "react-redux": "^8.1.1",
     "react-select": "^5.7.3",
     "swiper": "^9.4.1",
     "tailwindcss": "3.3.2",

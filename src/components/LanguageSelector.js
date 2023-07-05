@@ -1,10 +1,11 @@
-import { useContext } from "react";
-import { CodeEditorContext } from "@/context/CodeEditorContext";
+import { useDispatch } from "react-redux";
+import { updateLanguage } from "@/redux/codeEditorSlice";
 import { langs } from "@uiw/codemirror-extensions-langs";
 import Select from "react-select";
 
 const LanguageSelector = () => {
-  const { updateLanguage } = useContext(CodeEditorContext);
+  const dispatch = useDispatch();
+
   const languageOptions = Object.keys(langs)
     .sort()
     .map((lang) => ({
@@ -21,7 +22,10 @@ const LanguageSelector = () => {
         defaultValue={languageOptions[42]} //Select JavaScript
         isSearchable={true}
         name="languageSelector"
-        onChange={(newLang) => updateLanguage(newLang.value)}
+        onChange={(newLang) => {
+          console.log(newLang);
+          dispatch(updateLanguage(newLang.value));
+        }}
         options={languageOptions}
       />
     </div>

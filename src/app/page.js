@@ -1,10 +1,11 @@
 "use client";
-import { useState, useEffect, useContext } from "react";
-import CodeEditorContextProvider from "@/context/CodeEditorContext";
+import { useState, useEffect } from "react";
 import { createWorker } from "tesseract.js";
 import CodeEditor from "@/components/CodeEditor";
 import ImageInput from "@/components/ImageInput";
-import ImageDataContextProvider from "@/context/ImageDataContext";
+import { store } from "@/redux/store";
+import { Provider } from "react-redux";
+
 export default function Home() {
   const [workerObj, setWorkerObj] = useState(null);
   const [extractedCode, setExtractedCode] = useState("");
@@ -30,13 +31,10 @@ export default function Home() {
   return (
     <div>
       <h1>Code Extractor</h1>
-
-      <ImageDataContextProvider>
-        <ImageInput />
-      </ImageDataContextProvider>
-      <CodeEditorContextProvider>
+      <Provider store={store}>
+        {/* <ImageInput /> */}
         <CodeEditor codeValue={extractedCode} />
-      </CodeEditorContextProvider>
+      </Provider>
     </div>
   );
 }

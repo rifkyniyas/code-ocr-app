@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useDispatch } from "react-redux";
+import { updateTheme } from "@/redux/codeEditorSlice";
 import { CodeEditorContext } from "@/context/CodeEditorContext";
 import Select from "react-select";
 
 const ThemeSelector = () => {
-  const { updateTheme } = useContext(CodeEditorContext);
+  const dispatch = useDispatch();
   const themeOptions = [
     { value: "androidstudio", label: "Android Studio" },
     { value: "dracula", label: "Dracula" },
@@ -27,8 +28,7 @@ const ThemeSelector = () => {
         isSearchable={true}
         name="editorTheme"
         onChange={(newTheme) => {
-          // console.log(newTheme);
-          updateTheme(newTheme.value);
+          dispatch(updateTheme(newTheme.value));
         }}
         options={themeOptions}
       />

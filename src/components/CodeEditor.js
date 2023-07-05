@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import { CodeEditorContext } from "@/context/CodeEditorContext";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import CodeMirror from "@uiw/react-codemirror";
 import prettier from "prettier/standalone";
 import parserBabel from "prettier/parser-babel";
@@ -18,9 +18,12 @@ import { sublime } from "@uiw/codemirror-theme-sublime";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import { xcodeDark } from "@uiw/codemirror-theme-xcode";
 import { xcodeLight } from "@uiw/codemirror-theme-xcode";
+
 const CodeEditor = ({ code }) => {
   const [codeValue, setCodeValue] = useState(code);
-  const { editorSettings } = useContext(CodeEditorContext);
+  const codeTheme = useSelector((state) => state.codeEditor.theme);
+  const codeLanguage = useSelector((state) => state.codeEditor.language);
+
   const themeMap = {
     androidstudio,
     dracula,
@@ -57,8 +60,8 @@ const CodeEditor = ({ code }) => {
         <CodeMirror
           value={codeValue}
           height="200px"
-          theme={themeMap[editorSettings.theme] || vscodeDark}
-          extensions={[loadLanguage(editorSettings.language)]}
+          theme={themeMap[codeTheme] || vscodeDark}
+          extensions={[loadLanguage(codeLanguage)]}
           data-gramm="false"
           onChange={handleChange}
         />
