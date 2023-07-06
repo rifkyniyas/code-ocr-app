@@ -1,10 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { createWorker } from "tesseract.js";
 import CodeEditor from "@/components/CodeEditor";
 import ImageInput from "@/components/ImageInput";
+import CropImage from "@/components/CropImage";
 
 export default function Home() {
+  const imageData = useSelector((state) => state.imageData);
   const [workerObj, setWorkerObj] = useState(null);
   const [extractedCode, setExtractedCode] = useState("");
   const loadWorker = async () => {
@@ -30,6 +33,7 @@ export default function Home() {
     <div>
       <h1>Code Extractor</h1>
       <ImageInput />
+      {imageData.name !== null && !imageData.isExtracted && <CropImage />}
       <CodeEditor codeValue={extractedCode} />
     </div>
   );

@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  name: "",
-  originalData: "",
+  name: null,
+  originalData: null,
   isCropped: false,
-  croppedData: "",
+  croppedData: null,
+  isExtracted: false,
 };
 
 export const imageDataSlice = createSlice({

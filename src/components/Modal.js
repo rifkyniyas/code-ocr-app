@@ -1,4 +1,4 @@
-const Modal = ({ isOpen, onClose, children }) => {
+const Modal = ({ isOpen, children }) => {
   if (!isOpen) return null;
   return (
     <>
@@ -9,7 +9,6 @@ const Modal = ({ isOpen, onClose, children }) => {
             {/*header*/}
             <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
               <h3 className="text-3xl font-semibold">Modal Title</h3>
-              <button onClick={onClose}>Close</button>
             </div>
             {/*body*/}
             <div className="relative p-6 flex-auto">{children}</div>
