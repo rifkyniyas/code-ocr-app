@@ -9,7 +9,6 @@ import CropImage from "@/components/CropImage";
 export default function Home() {
   const imageData = useSelector((state) => state.imageData);
   const [workerObj, setWorkerObj] = useState(null);
-  const [extractedCode, setExtractedCode] = useState("");
   const loadWorker = async () => {
     const worker = await createWorker({
       logger: (m) => console.log(m),
@@ -33,8 +32,10 @@ export default function Home() {
     <div>
       <h1>Code Extractor</h1>
       <ImageInput />
-      {imageData.name !== null && !imageData.isExtracted && <CropImage />}
-      <CodeEditor codeValue={extractedCode} />
+      {imageData.name !== null && !imageData.isExtracted && (
+        <CropImage worker={workerObj} />
+      )}
+      <CodeEditor />
     </div>
   );
 }

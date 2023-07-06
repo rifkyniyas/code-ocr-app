@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import CodeMirror from "@uiw/react-codemirror";
 import prettier from "prettier/standalone";
 import parserBabel from "prettier/parser-babel";
@@ -19,8 +19,23 @@ import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import { xcodeDark } from "@uiw/codemirror-theme-xcode";
 import { xcodeLight } from "@uiw/codemirror-theme-xcode";
 
-const CodeEditor = ({ code }) => {
-  const [codeValue, setCodeValue] = useState(code);
+const CodeEditor = () => {
+  const formatCode = (code) => {
+    try {
+      return prettier.format(code, {
+        parser: "babel",
+        plugins: [parserBabel],
+      });
+    } catch (error) {
+      console.error("Error formatting code:", error);
+      return code;
+    }
+  };
+
+  const { extractedCode } = useSelector((state) => state.imageData);
+  const initalCode = extractedCode ? formatCode(extractedCode) : "";
+  console.log(initalCode);
+  const [codeValue, setCodeValue] = useState(initalCode);
   const codeTheme = useSelector((state) => state.codeEditor.theme);
   const codeLanguage = useSelector((state) => state.codeEditor.language);
 
@@ -36,18 +51,6 @@ const CodeEditor = ({ code }) => {
     vscodeDark,
     xcodeDark,
     xcodeLight,
-  };
-
-  const formatCode = (code) => {
-    try {
-      return prettier.format(code, {
-        parser: "babel",
-        plugins: [parserBabel],
-      });
-    } catch (error) {
-      console.error("Error formatting code:", error);
-      return code;
-    }
   };
 
   const handleChange = (value) => {

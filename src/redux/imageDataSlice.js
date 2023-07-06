@@ -6,6 +6,7 @@ const initialState = {
   isCropped: false,
   croppedData: null,
   isExtracted: false,
+  extractedCode: null,
 };
 
 export const imageDataSlice = createSlice({

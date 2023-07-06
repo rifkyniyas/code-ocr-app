@@ -4,9 +4,10 @@ import { updateImgData } from "@/redux/imageDataSlice";
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 
-const CropImage = () => {
-  const { name, originalData, isCropped, croppedData, isExtracted } =
-    useSelector((state) => state.imageData);
+const CropImage = ({ worker }) => {
+  const { originalData, isCropped, croppedData } = useSelector(
+    (state) => state.imageData
+  );
   const dispatch = useDispatch();
   const cropperRef = useRef();
   const handleCrop = () => {
@@ -19,7 +20,13 @@ const CropImage = () => {
       })
     );
   };
-
+  const extractCode = async () => {
+    if (!croppedData) return console.log("Emptry Cropped data");
+    const {
+      data: { text },
+    } = await worker.recognize(croppedData);
+    dispatch(updateImgData({ isExtracted: true, extractedCode: text }));
+  };
   return (
     <>
       <Cropper
@@ -31,9 +38,7 @@ const CropImage = () => {
         ref={cropperRef}
       />
       <button onClick={handleCrop}>Crop</button>
-      <button
-        onClick={() => dispatch(updateImgData({ isExtracted: true }))}
-      ></button>
+      <button onClick={extractCode}>Extract Code</button>
       {isCropped && <img src={croppedData} alt="Cropped Preview" />}
     </>
   );

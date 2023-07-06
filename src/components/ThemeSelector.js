@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
 import { updateTheme } from "@/redux/codeEditorSlice";
-import { CodeEditorContext } from "@/context/CodeEditorContext";
 import Select from "react-select";
 
 const ThemeSelector = () => {
