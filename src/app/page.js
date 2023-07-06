@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import { createWorker } from "tesseract.js";
 import CodeEditor from "@/components/CodeEditor";
 import ImageInput from "@/components/ImageInput";
-import { store } from "@/redux/store";
-import { Provider } from "react-redux";
 
 export default function Home() {
   const [workerObj, setWorkerObj] = useState(null);
@@ -31,10 +29,8 @@ export default function Home() {
   return (
     <div>
       <h1>Code Extractor</h1>
-      <Provider store={store}>
-        {/* <ImageInput /> */}
-        <CodeEditor codeValue={extractedCode} />
-      </Provider>
+      <ImageInput />
+      <CodeEditor codeValue={extractedCode} />
     </div>
   );
 }

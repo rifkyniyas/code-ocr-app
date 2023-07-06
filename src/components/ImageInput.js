@@ -1,21 +1,22 @@
-import { useContext } from "react";
-import { ImageDataContext } from "@/context/ImageDataContext";
+import { useDispatch } from "react-redux";
+import { updateImgData } from "@/redux/imageDataSlice";
 import { readImageFile } from "@/utilities/imageUtils";
 import CropImage from "./CropImage";
 const ImageInput = () => {
-  const { updateImageData, imageData } = useContext(ImageDataContext);
-
+  const dispatch = useDispatch();
   const handleImageUpload = async (event) => {
     event.preventDefault();
 
     const imageFile = event.target.files[0];
     const imageData = await readImageFile(imageFile);
     console.log(imageFile);
-    updateImageData({
-      name: imageFile.name,
-      originalData: imageData,
-      isCropped: false,
-    });
+    dispatch(
+      updateImgData({
+        name: imageFile.name,
+        originalData: imageData,
+        isCropped: false,
+      })
+    );
   };
   return (
     <form onSubmit={(e) => e.preventDefault()}>
@@ -49,11 +50,6 @@ const ImageInput = () => {
           </div>
         </div>
       </div>
-      <p>{imageData.name} </p>
-      <p>{imageData.originalData}</p>
-      <p>{imageData.isCropped}</p>
-      <p>{imageData.croppedData}</p>
-      {imageData.name !== "" && !imageData.isCropped && <CropImage />}
     </form>
   );
 };
