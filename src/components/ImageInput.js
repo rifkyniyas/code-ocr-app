@@ -21,12 +21,6 @@ const ImageInput = () => {
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <div className="col-span-full">
-        <label
-          htmlFor="cover-photo"
-          className="block text-sm font-medium leading-6 text-gray-900"
-        >
-          Enter the code image
-        </label>
         <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
           <div className="text-center">
             <div className="mt-4 flex text-sm leading-6 text-gray-600">
@@ -46,7 +40,9 @@ const ImageInput = () => {
               </label>
               <p className="pl-1">or drag and drop</p>
             </div>
-            <p className="text-xs leading-5 text-gray-600">PNG, JPG</p>
+            <p className="text-xs leading-5 text-gray-600">
+              Supported File Types: PNG, JPG, JPEG
+            </p>
           </div>
         </div>
       </div>

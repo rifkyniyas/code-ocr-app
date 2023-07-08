@@ -59,7 +59,12 @@ const CodeEditor = () => {
 
   return (
     <div>
-      <div className="max-w-3xl mx-auto rounded-md overflow-hidden">
+      <ThemeSelector />
+      <LanguageSelector />
+      <button onClick={() => setCodeValue(formatCode(codeValue))}>
+        Format Code
+      </button>
+      <div className="max-w-4xl mx-auto rounded-md overflow-hidden">
         <CodeMirror
           value={codeValue}
           height="200px"
@@ -69,12 +74,6 @@ const CodeEditor = () => {
           onChange={handleChange}
         />
       </div>
-
-      <ThemeSelector />
-      <LanguageSelector />
-      <button onClick={() => setCodeValue(formatCode(codeValue))}>
-        Format Code
-      </button>
     </div>
   );
 };
