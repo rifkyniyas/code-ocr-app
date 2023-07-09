@@ -32,13 +32,13 @@ const CodeEditor = () => {
     }
   };
 
-  const { extractedCode } = useSelector((state) => state.imageData);
+  const { name, extractedCode } = useSelector((state) => state.imageData);
   const initalCode = extractedCode ? formatCode(extractedCode) : "";
-  console.log(initalCode);
   const [codeValue, setCodeValue] = useState(initalCode);
   const codeTheme = useSelector((state) => state.codeEditor.theme);
   const codeLanguage = useSelector((state) => state.codeEditor.language);
 
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const themeMap = {
     androidstudio,
     dracula,
@@ -58,13 +58,40 @@ const CodeEditor = () => {
   };
 
   return (
-    <div>
-      <ThemeSelector />
-      <LanguageSelector />
-      <button onClick={() => setCodeValue(formatCode(codeValue))}>
-        Format Code
-      </button>
-      <div className="max-w-4xl mx-auto rounded-md overflow-hidden">
+    <div className="max-w-4xl mx-auto rounded-md overflow-hidden p-6 bg-gray">
+      <div className="flex items-center justify-between">
+        <p>{name ? name : "No image file extracted"}</p>
+        <div className="flex items-center gap-x-4">
+          <button
+            onClick={() => setIsSettingsOpen((prevSetting) => !prevSetting)}
+          >
+            Trigger Settings
+          </button>
+          <button onClick={() => setCodeValue(formatCode(codeValue))}>
+            Format Code
+          </button>
+          <button
+            onClick={() => {
+              navigator.clipboard
+                .writeText(codeValue)
+                .then(() => console.log("Code snippet copied to clipboard"))
+                .catch((e) => console.log("Unable to copy code" + e));
+              console.log("COpied");
+            }}
+          >
+            Copy Code
+          </button>
+        </div>
+      </div>
+
+      <div className="relative rounded-md">
+        {isSettingsOpen && (
+          <div className="absolute inset-0 bg-slate-600 z-50">
+            <ThemeSelector />
+            <LanguageSelector />
+          </div>
+        )}
+
         <CodeMirror
           value={codeValue}
           height="200px"

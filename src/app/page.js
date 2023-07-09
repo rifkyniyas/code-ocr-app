@@ -104,7 +104,7 @@ export default function Home() {
               </a>
             </li>
           </ul>
-          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-100">
             &copy; {new Date().getFullYear()}. All Rights Reserved.
           </span>
         </div>
