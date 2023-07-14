@@ -11,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-background text-text">
         <Provider store={store}>{children}</Provider>
       </body>
     </html>

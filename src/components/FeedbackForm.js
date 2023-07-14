@@ -1,3 +1,4 @@
+import { Icon } from "@iconify/react";
 import React from "react";
 
 const FeedbackForm = () => {
@@ -49,11 +50,18 @@ const FeedbackForm = () => {
           </button>
         </form>
         <div className="flex justify-center items-center gap-x-6">
-          <span className="block h-1 w-1/2 bg-gray-300"></span>
+          <span className="block h-1 w-1/2 bg-gray-100"></span>
           <span>or</span>
-          <span className="block h-1 w-1/2 bg-gray-300"></span>
+          <span className="block h-1 w-1/2 bg-gray-100"></span>
         </div>
-        <button>Drop a DM via Twitter</button>
+        <a
+          href="https://twitter.com/NiyasRifky"
+          target="_blank"
+          className="flex justify-center items-center gap-x-3"
+        >
+          <Icon icon={"entypo-social:twitter"} />
+          <span>Drop a DM via Twitter</span>
+        </a>
       </div>
     </section>
   );

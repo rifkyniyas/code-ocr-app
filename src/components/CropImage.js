@@ -28,19 +28,24 @@ const CropImage = ({ worker }) => {
     dispatch(updateImgData({ isExtracted: true, extractedCode: text }));
   };
   return (
-    <>
-      <Cropper
-        src={originalData} //Inital data of input image
-        style={{ height: 400, width: "100%" }}
-        // Cropper.js options
-        initialAspectRatio={16 / 9}
-        guides={false}
-        ref={cropperRef}
-      />
-      <button onClick={handleCrop}>Crop</button>
-      <button onClick={extractCode}>Extract Code</button>
-      {isCropped && <img src={croppedData} alt="Cropped Preview" />}
-    </>
+    <div className="grid grid-cols-2">
+      <div>
+        git
+        <Cropper
+          src={originalData} //Inital data of input image
+          style={{ height: 400, width: "100%" }}
+          // Cropper.js options
+          initialAspectRatio={16 / 9}
+          guides={false}
+          ref={cropperRef}
+        />
+        <button onClick={handleCrop}>Crop</button>
+      </div>
+      <div>
+        {isCropped && <img src={croppedData} alt="Cropped Preview" />}
+        <button onClick={extractCode}>Extract Code</button>
+      </div>
+    </div>
   );
 };
 

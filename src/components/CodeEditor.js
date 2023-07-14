@@ -58,7 +58,7 @@ const CodeEditor = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto rounded-md overflow-hidden p-6 bg-gray">
+    <div className="max-w-4xl mx-auto  p-6 bg-gray-400">
       <div className="flex items-center justify-between">
         <p>{name ? name : "No image file extracted"}</p>
         <div className="flex items-center gap-x-4">
@@ -84,7 +84,7 @@ const CodeEditor = () => {
         </div>
       </div>
 
-      <div className="relative rounded-md">
+      <div className="relative rounded-md overflow-hidden">
         {isSettingsOpen && (
           <div className="absolute inset-0 bg-slate-600 z-50">
             <ThemeSelector />
