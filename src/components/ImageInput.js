@@ -20,15 +20,16 @@ const ImageInput = () => {
   };
   return (
     <form onSubmit={(e) => e.preventDefault()}>
-      <div className="col-span-full">
+      <div className="col-span-full bg-white">
         <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
           <div className="text-center">
-            <div className="mt-4 flex text-sm leading-6 text-gray-600">
+            <div className="mt-4 flex text-sm items-center leading-6 text-gray-600">
               <label
                 htmlFor="file-upload"
-                className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                className="relative px-3 py-2 cursor-pointer rounded-md font-semibold bg-cta hover:bg-primary text-white 
+                focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 "
               >
-                <span>Upload a file</span>
+                <span>Upload an image</span>
                 <input
                   id="file-upload"
                   name="file-upload"

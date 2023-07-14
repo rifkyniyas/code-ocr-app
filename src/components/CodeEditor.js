@@ -58,7 +58,7 @@ const CodeEditor = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto  p-6 bg-gray-400">
+    <div className="max-w-4xl mx-auto px-12 pb-10 rounded bg-accent">
       <div className="flex items-center justify-between">
         <p>{name ? name : "No image file extracted"}</p>
         <div className="flex items-center gap-x-4">

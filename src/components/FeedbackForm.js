@@ -3,12 +3,12 @@ import React from "react";
 
 const FeedbackForm = () => {
   return (
-    <section class="bg-white dark:bg-gray-900">
+    <section class="">
       <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
+        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center">
           Provide Feedback
         </h2>
-        <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">
+        <p class="mb-8 lg:mb-16 font-light text-center sm:text-xl">
           Ran into an issue? Looking for a new feature? Let me know of your
           thoughts and I will reach back to you shortly
         </p>
@@ -50,14 +50,14 @@ const FeedbackForm = () => {
           </button>
         </form>
         <div className="flex justify-center items-center gap-x-6">
-          <span className="block h-1 w-1/2 bg-gray-100"></span>
+          <span className="block h-1 w-1/2 bg-white"></span>
           <span>or</span>
-          <span className="block h-1 w-1/2 bg-gray-100"></span>
+          <span className="block h-1 w-1/2 bg-white"></span>
         </div>
         <a
           href="https://twitter.com/NiyasRifky"
           target="_blank"
-          className="flex justify-center items-center gap-x-3"
+          className="inline-flex mx-auto justify-center items-center gap-x-3 bg-[#1DA1F2] text-white"
         >
           <Icon icon={"entypo-social:twitter"} />
           <span>Drop a DM via Twitter</span>
