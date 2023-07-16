@@ -18,6 +18,7 @@ import { sublime } from "@uiw/codemirror-theme-sublime";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import { xcodeDark } from "@uiw/codemirror-theme-xcode";
 import { xcodeLight } from "@uiw/codemirror-theme-xcode";
+import { Icon } from "@iconify/react";
 
 const CodeEditor = () => {
   const formatCode = (code) => {
@@ -60,12 +61,16 @@ const CodeEditor = () => {
   return (
     <div className="max-w-4xl mx-auto px-12 pb-10 rounded bg-accent">
       <div className="flex items-center justify-between">
-        <p>{name ? name : "No image file extracted"}</p>
+        <div>
+          <p>{name ? name : "No Image Name"}</p>
+        </div>
+
         <div className="flex items-center gap-x-4">
           <button
             onClick={() => setIsSettingsOpen((prevSetting) => !prevSetting)}
           >
-            Trigger Settings
+            <Icon icon={""} />
+            Settings
           </button>
           <button onClick={() => setCodeValue(formatCode(codeValue))}>
             Format Code

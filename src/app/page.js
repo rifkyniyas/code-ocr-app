@@ -1,6 +1,7 @@
 "use client";
-import { useState, useEffect, Suspense, lazy } from "react";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { updateWorker, updateLog } from "@/redux/ocrSlice";
 import { createWorker } from "tesseract.js";
 import Header from "@/components/Header";
 import CodeEditor from "@/components/CodeEditor";
@@ -9,22 +10,38 @@ import CropImage from "@/components/CropImage";
 import FeedbackForm from "@/components/FeedbackForm";
 import Footer from "@/components/Footer";
 import LoadingStatus from "@/components/LoadingStatus";
+import ImageInput from "@/components/ImageInput";
 
-const ImageInput = lazy(() => import("@/components/ImageInput"));
+const displayForm = (formState) => {
+  switch (formState) {
+    case "waitingUpload":
+      return <ImageInput />;
+    case "waitingCrop":
+      return <CropImage />;
+    case "isExtracted":
+      return <CodeEditor />;
+  }
+};
 
 export default function Home() {
   const imageData = useSelector((state) => state.imageData);
-  const [workerObj, setWorkerObj] = useState(null);
-  const [modelLoading, setModelLoading] = useState({});
+  const ocr = useSelector((state) => state.ocr);
+  const dispatch = useDispatch();
 
   const loadWorker = async () => {
     const worker = await createWorker({
-      logger: (m) => {
-        setModelLoading(m);
-        if (m.status == "initialized api") setModelLoading({});
+      logger: (logData) => {
+        const status = logData.status;
+        console.log(logData);
+        if (
+          status == "initialized api" ||
+          (status == "recognizing text" && logData.progress == 1)
+        )
+          return dispatch(updateLog({ isLoadingComplete: true }));
+        dispatch(updateLog(logData));
       },
     });
-    setWorkerObj(worker);
+    dispatch(updateWorker(worker));
 
     await worker.load();
     await worker.loadLanguage("eng");
@@ -35,7 +52,7 @@ export default function Home() {
     loadWorker();
 
     return async () => {
-      await workerObj.terminate();
+      await ocr.worker.terminate();
     };
   }, []);
 
@@ -53,30 +70,17 @@ export default function Home() {
             Never again! Extract code from images with few clicks and start
             using in your project right away.
           </p>
-          {/* {modelLoading !== {} && (
+          {ocr.loggedData.isLoadingComplete ? (
+            displayForm(imageData.step)
+          ) : (
             <LoadingStatus
-             
+              message={ocr.loggedData.status}
+              percentage={ocr.loggedData.progress * 100}
             />
-          )} */}
-          <Suspense
-            fallback={
-              <LoadingStatus
-                message={modelLoading.status}
-                percentage={modelLoading.progress * 100}
-              />
-            }
-          >
-            <ImageInput />
-          </Suspense>
-
-          {/*  */}
+          )}
         </div>
       </section>
 
-      {imageData.name !== null && !imageData.isExtracted && (
-        <CropImage worker={workerObj} />
-      )}
-      <CodeEditor />
       <FeedbackForm />
       <Footer />
     </>

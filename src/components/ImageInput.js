@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import { updateImgData } from "@/redux/imageDataSlice";
 import { readImageFile } from "@/utilities/imageUtils";
-import CropImage from "./CropImage";
 const ImageInput = () => {
   const dispatch = useDispatch();
   const handleImageUpload = async (event) => {
@@ -12,6 +11,7 @@ const ImageInput = () => {
     console.log(imageFile);
     dispatch(
       updateImgData({
+        step: "waitingCrop",
         name: imageFile.name,
         originalData: imageData,
         isCropped: false,
