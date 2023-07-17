@@ -36,7 +36,6 @@ const CropImage = () => {
           src={originalData} //Inital data of input image
           style={{ height: 400, width: "100%" }}
           // Cropper.js options
-          initialAspectRatio={16 / 9}
           guides={false}
           ref={cropperRef}
         />

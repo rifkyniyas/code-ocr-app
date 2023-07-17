@@ -59,8 +59,8 @@ const CodeEditor = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-12 pb-10 rounded bg-accent">
-      <div className="flex items-center justify-between">
+    <div className="w-screen mx-auto px-2 py-4 lg:px-12 lg:py-10 rounded bg-primary">
+      <div className="flex items-center justify-between rounded-t-md">
         <div>
           <p>{name ? name : "No Image Name"}</p>
         </div>
@@ -89,7 +89,7 @@ const CodeEditor = () => {
         </div>
       </div>
 
-      <div className="relative rounded-md overflow-hidden">
+      <div className="relative rounded-b-md overflow-hidden">
         {isSettingsOpen && (
           <div className="absolute inset-0 bg-slate-600 z-50">
             <ThemeSelector />
@@ -111,3 +111,17 @@ const CodeEditor = () => {
 };
 
 export default CodeEditor;
+
+const pluckDeep = (key) => (obj) =>
+  key.split(".").reduce((accum, key) => accum[key], obj);
+const compose =
+  (...fns) =>
+  (res) =>
+    fns.reduce((accum, next) => next(accum), res);
+const unfold = (f, seed) => {
+  const go = (f, seed, acc) => {
+    const res = f(seed);
+    return res ? go(f, res[1], acc.concat([res[0]])) : acc;
+  };
+  return go(f, seed, []);
+};

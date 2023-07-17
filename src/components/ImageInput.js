@@ -27,7 +27,7 @@ const ImageInput = () => {
               <label
                 htmlFor="file-upload"
                 className="relative px-3 py-2 cursor-pointer rounded-md font-semibold bg-cta hover:bg-primary text-white 
-                focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 "
+                outline-none "
               >
                 <span>Upload an image</span>
                 <input

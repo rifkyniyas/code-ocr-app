@@ -16,7 +16,7 @@ const FeedbackForm = () => {
           <div>
             <label
               for="email"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              class="block mb-2 text-sm outline-none font-medium text-gray-900 dark:text-gray-300"
             >
               Your email
             </label>

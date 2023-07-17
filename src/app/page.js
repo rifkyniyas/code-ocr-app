@@ -11,6 +11,7 @@ import FeedbackForm from "@/components/FeedbackForm";
 import Footer from "@/components/Footer";
 import LoadingStatus from "@/components/LoadingStatus";
 import ImageInput from "@/components/ImageInput";
+import FormStep from "@/components/FormStep";
 
 const displayForm = (formState) => {
   switch (formState) {
@@ -71,7 +72,10 @@ export default function Home() {
             using in your project right away.
           </p>
           {ocr.loggedData.isLoadingComplete ? (
-            displayForm(imageData.step)
+            <>
+              {displayForm(imageData.step)}
+              <FormStep />
+            </>
           ) : (
             <LoadingStatus
               message={ocr.loggedData.status}
