@@ -34,9 +34,9 @@ const CropImage = () => {
       <div>
         <Cropper
           src={originalData} //Inital data of input image
-          style={{ height: 400, width: "100%" }}
+          style={{ width: "100%" }}
           // Cropper.js options
-          guides={false}
+          viewMode={3}
           ref={cropperRef}
         />
         <button onClick={handleCrop}>Crop</button>

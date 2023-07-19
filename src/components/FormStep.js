@@ -4,46 +4,39 @@ import { useSelector } from "react-redux";
 const FormStep = () => {
   const imageData = useSelector((state) => state.imageData);
   return (
-    <ol class="items-center sm:flex justify-center">
-      <li class="relative mb-6 sm:mb-0">
-        <div class="flex items-center">
-          <div class="z-10 flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
-            <Icon icon="octicon:upload-24" />
+    <ol class="flex gap-x-5 py-5 items-center justify-center">
+      <li class="relative w-1/5">
+        <div class="flex items-center justify-center">
+          <div
+            class="flex items-center justify-center  rounded-full 
+          bg-primary text-white p-2 z-10"
+          >
+            <Icon icon="octicon:upload-24" className="w-5 h-5" />
           </div>
-          <div class="hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
         </div>
-        <div class="mt-3 sm:pr-8">
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-            Upload your Image
-          </h3>
+        <div class="hidden mt-3 md:block">
+          <h3 class="font-medium">Upload Image</h3>
         </div>
+        <div className="absolute inset-x-0 bg-text bg-opacity-25 h-1 top-4"></div>
       </li>
-      <li class="relative mb-6 sm:mb-0">
-        <div class="flex items-center">
-          <div class="z-10 flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
-            <Icon icon={"radix-icons:crop"} />
+      <li class="relative w-1/5">
+        <div class="flex items-center justify-center">
+          <div
+            class="flex items-center justify-center  rounded-full 
+          bg-primary text-white p-2 z-10"
+          >
+            <Icon icon="tabler:code" className="w-5 h-5" />
           </div>
-          <div class="hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
         </div>
-        <div class="mt-3 sm:pr-8">
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-            Crop the Code
-          </h3>
+        <div class="hidden mt-3 md:block">
+          <h3 class="font-medium">Extracted Code</h3>
         </div>
+        <div className="absolute inset-x-0 bg-text bg-opacity-25 h-1 top-4"></div>
       </li>
-      <li class="relative mb-6 sm:mb-0">
-        <div class="flex items-center">
-          <div class="z-10 flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
-            <Icon icon={"tabler:code"} />
-          </div>
-          <div class="hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
-        </div>
-        <div class="mt-3 sm:pr-8">
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-            Extracted Code
-          </h3>
-        </div>
-      </li>
+      {/* <Icon icon={""} />
+      Crop the Code */}
+      {/* <Icon icon={""} />
+       */}
     </ol>
   );
 };
