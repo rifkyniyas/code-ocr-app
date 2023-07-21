@@ -2,11 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   step: "waitingUpload",
-  /* Accepted values
-    1- Waiting Upload
-    2- Waiting Crop
-    3- Is Extracted
-  */
   name: null,
   originalData: null,
   croppedData: null,

@@ -5,13 +5,12 @@ import { updateWorker, updateLog } from "@/redux/ocrSlice";
 import { createWorker } from "tesseract.js";
 import Header from "@/components/Header";
 import CodeEditor from "@/components/CodeEditor";
-// import ImageInput from "@/components/ImageInput";
 import CropImage from "@/components/CropImage";
 import FeedbackForm from "@/components/FeedbackForm";
 import Footer from "@/components/Footer";
 import LoadingStatus from "@/components/LoadingStatus";
 import ImageInput from "@/components/ImageInput";
-import FormStep from "@/components/FormStep";
+import FormSteps from "@/components/FormSteps";
 
 const displayForm = (formState) => {
   switch (formState) {
@@ -72,7 +71,7 @@ export default function Home() {
             using in your project right away.
           </p>
           <div className="py-5">
-            <FormStep />
+            <FormSteps />
             {ocr.loggedData.isLoadingComplete ? (
               displayForm(imageData.step)
             ) : (
