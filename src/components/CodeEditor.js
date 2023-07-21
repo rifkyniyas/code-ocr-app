@@ -59,21 +59,30 @@ const CodeEditor = () => {
   };
 
   return (
-    <div className="w-screen mx-auto px-2 py-4 lg:px-12 lg:py-10 rounded bg-primary">
-      <div className="flex items-center justify-between rounded-t-md">
-        <div>
-          <p>{name ? name : "No Image Name"}</p>
+    <div className="max-w-screen-lg mx-auto px-2 py-4 lg:px-12 lg:py-10 rounded">
+      <div
+        className="flex items-center justify-between py-2 px-6 rounded-t-md 
+      bg-primary text-white"
+      >
+        <div className="flex items-center gap-x-4">
+          <Icon icon="ic:round-image" className="w-5 h-5" />
+          <p className="text-lg font-medium">{name ? name : "No Image Name"}</p>
         </div>
 
-        <div className="flex items-center gap-x-4">
+        <div className="flex items-center gap-x-6">
           <button
             onClick={() => setIsSettingsOpen((prevSetting) => !prevSetting)}
+            className="flex items-center gap-x-2 hover:text-text"
           >
-            <Icon icon={""} />
-            Settings
+            <Icon icon="carbon:settings" className="w-5 h-5" />
+            <span>Settings</span>
           </button>
-          <button onClick={() => setCodeValue(formatCode(codeValue))}>
-            Format Code
+          <button
+            onClick={() => setCodeValue(formatCode(codeValue))}
+            className="flex items-center gap-x-2 text-sm hover:text-text"
+          >
+            <Icon icon="uil:align-left" className="w-5 h-5" />
+            <span>Format</span>
           </button>
           <button
             onClick={() => {
@@ -81,17 +90,18 @@ const CodeEditor = () => {
                 .writeText(codeValue)
                 .then(() => console.log("Code snippet copied to clipboard"))
                 .catch((e) => console.log("Unable to copy code" + e));
-              console.log("COpied");
             }}
+            className="flex items-center gap-x-2 text-sm hover:text-text"
           >
-            Copy Code
+            <Icon icon="iconamoon:copy-light" className="w-5 h-5" />
+            <span>Copy</span>
           </button>
         </div>
       </div>
 
-      <div className="relative rounded-b-md overflow-hidden">
+      <div className="relative rounded-b-md overflow-hidden shadow-2xl">
         {isSettingsOpen && (
-          <div className="absolute inset-0 bg-slate-600 z-50">
+          <div className="absolute inset-0 bg-white text-text z-50 px-5 py-3 space-y-4">
             <ThemeSelector />
             <LanguageSelector />
           </div>

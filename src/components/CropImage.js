@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { updateImgData } from "@/redux/imageDataSlice";
 import Cropper from "react-cropper";
@@ -30,22 +31,41 @@ const CropImage = () => {
     dispatch(updateImgData({ step: "isExtracted", extractedCode: text }));
   };
   return (
-    <div className="grid grid-cols-2">
-      <div>
-        <Cropper
-          src={originalData} //Inital data of input image
-          style={{ width: "100%" }}
-          // Cropper.js options
-          viewMode={3}
-          ref={cropperRef}
-        />
-        <button onClick={handleCrop}>Crop</button>
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-2">
+        <div>
+          <h3>Original Image</h3>
+          <Cropper
+            src={originalData} //Inital data of input image
+            style={{ width: "100%", maxHeight: "500px" }}
+            viewMode={3}
+            ref={cropperRef}
+          />
+        </div>
+
+        <div>
+          <h3>Preview</h3>
+          {isCropped && <img src={croppedData} alt="Cropped Preview" />}
+        </div>
       </div>
-      <div>
-        {isCropped && <img src={croppedData} alt="Cropped Preview" />}
-        <button onClick={extractCode}>Extract Code</button>
+      <div className="flex justify-center items-center gap-x-6">
+        <button
+          onClick={handleCrop}
+          className="py-3 px-5 text-sm font-medium text-center text-white bg-cta
+        hover:bg-opacity-50 rounded"
+        >
+          Crop and Preview
+        </button>
+        <button
+          onClick={extractCode}
+          className="py-3 px-5 text-sm font-medium text-center text-white bg-cta
+        hover:bg-primary rounded"
+          disabled={croppedData}
+        >
+          Extract Code
+        </button>
       </div>
-    </div>
+    </>
   );
 };
 

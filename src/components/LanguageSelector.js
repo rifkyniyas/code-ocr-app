@@ -14,8 +14,10 @@ const LanguageSelector = () => {
       label: lang.charAt(0).toUpperCase() + lang.slice(1),
     }));
   return (
-    <div>
-      <label htmlFor="langSelect">Select Language</label>
+    <div className="flex flex-col">
+      <label htmlFor="langSelect" className="text-left font-medium mb-2">
+        Select Language
+      </label>
       <Select
         className="basic-single"
         classNamePrefix="select"

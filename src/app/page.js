@@ -70,7 +70,7 @@ export default function Home() {
             Never again! Extract code from images with few clicks and start
             using in your project right away.
           </p>
-          <div className="py-5">
+          <div className="py-5 bg-white shadow-md rounded">
             <FormSteps />
             {ocr.loggedData.isLoadingComplete ? (
               displayForm(imageData.step)

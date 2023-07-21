@@ -18,8 +18,10 @@ const ThemeSelector = () => {
     { value: "xcodeLight", label: "X Code Light" },
   ];
   return (
-    <div>
-      <label htmlFor="themeSelect">Select Theme</label>
+    <div className="flex flex-col">
+      <label htmlFor="themeSelect" className="text-left font-medium mb-2">
+        Select Theme
+      </label>
       <Select
         className="basic-single"
         classNamePrefix="select"
