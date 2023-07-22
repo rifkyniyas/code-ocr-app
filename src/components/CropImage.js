@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import Image from "next/image";
+import { Icon } from "@iconify/react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateImgData } from "@/redux/imageDataSlice";
 import Cropper from "react-cropper";
@@ -43,8 +44,25 @@ const CropImage = () => {
           />
         </div>
         <div>
-          <h3 className="text-lg font-medium mb-3">Preview</h3>
-          {isCropped && <img src={croppedData} alt="Cropped Preview" />}
+          <h3 className="text-lg font-medium mb-3">Cropped Image preview </h3>
+          {isCropped ? (
+            <div className="relative max-h-[500px] min-h-[200px] w-full">
+              <Image
+                src={croppedData}
+                alt="Cropped Preview"
+                fill={true}
+                style={{ objectFit: "contain" }}
+              />
+            </div>
+          ) : (
+            <div className="flex flex-col h-full justify-center items-center text-gray">
+              <Icon
+                icon="material-symbols:broken-image-outline-sharp"
+                className="w-10 h-10"
+              />
+              <p className="text-xs font-medium">Image isn't cropped</p>
+            </div>
+          )}
         </div>
         <div className="col-span-2 flex justify-center mt-3 mb-2">
           <button
@@ -63,7 +81,7 @@ const CropImage = () => {
         <button
           onClick={extractCode}
           className="py-3 px-5 text-sm font-medium text-center text-white bg-cta
-        hover:bg-primary rounded disabled:bg-gray disabled:hover:bg-gray"
+        hover:bg-primary rounded disabled:bg-gray disabled:hover:cursor-not-allowed disabled:hover:bg-gray"
           disabled={!croppedData}
         >
           Extract Code

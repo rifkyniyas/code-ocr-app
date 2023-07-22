@@ -7,14 +7,17 @@ const LanguageSelector = () => {
   const codeLanguage = useSelector((state) => state.codeEditor.language);
   console.log(codeLanguage);
   const dispatch = useDispatch();
-
+  let defaultIndex = 42; //Javascript
   const languageOptions = Object.keys(langs)
     .sort()
-    .map((lang) => ({
-      value: lang,
-      //Capitalize the first letter
-      label: lang.charAt(0).toUpperCase() + lang.slice(1),
-    }));
+    .map((lang, index) => {
+      if (lang == codeLanguage) defaultIndex = index;
+      return {
+        value: lang,
+        label: lang.charAt(0).toUpperCase() + lang.slice(1), //Capitalize the first letter
+      };
+    });
+  console.log(languageOptions);
   return (
     <div className="flex flex-col">
       <label htmlFor="langSelect" className="text-left font-medium mb-2">
@@ -23,7 +26,7 @@ const LanguageSelector = () => {
       <Select
         className="basic-single"
         classNamePrefix="select"
-        defaultValue={!codeLanguage ? languageOptions[42] : codeLanguage}
+        defaultValue={languageOptions[defaultIndex]}
         isSearchable={true}
         name="languageSelector"
         onChange={(newLang) => {

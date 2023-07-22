@@ -16,9 +16,10 @@ export const imageDataSlice = createSlice({
       console.log({ ...state, ...action.payload });
       return { ...state, ...action.payload };
     },
+    clearData: (state) => initialState,
   },
 });
 
-export const { updateImgData } = imageDataSlice.actions;
+export const { updateImgData, clearData } = imageDataSlice.actions;
 
 export default imageDataSlice.reducer;
