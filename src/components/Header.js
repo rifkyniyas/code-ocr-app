@@ -34,26 +34,29 @@ const Header = () => {
           <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
             <li className="nav-item">
               <a
-                className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                href="#pablo"
+                className="px-3 py-2 flex items-center text-sm font-bold leading-snug 
+                text-white hover:underline underline-offset-4"
+                href="#"
               >
-                <span className="ml-2">Share</span>
+                <span className="ml-2">Home</span>
               </a>
             </li>
             <li className="nav-item">
               <a
-                className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                href="#pablo"
+                className="px-3 py-2 flex items-center text-sm font-bold leading-snug 
+                text-white hover:underline underline-offset-4"
+                href="#feedback"
               >
-                <span className="ml-2">Tweet</span>
+                <span className="ml-2">Feedback</span>
               </a>
             </li>
             <li className="nav-item">
               <a
-                className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                className="px-3 py-2 flex items-center text-sm font-bold leading-snug 
+                text-white hover:underline underline-offset-4"
                 href="#pablo"
               >
-                <span className="ml-2">Pin</span>
+                <span className="ml-2">Support My Work</span>
               </a>
             </li>
           </ul>

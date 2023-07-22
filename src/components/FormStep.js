@@ -15,7 +15,7 @@ const FormStep = ({ isCompleted, stepToUpdate, isDisabled, text, icon }) => {
       >
         <Icon icon={icon} className="w-5 h-5" />
       </button>
-      <h3 class="mt-3 hidden md:block text-sm font-medium uppercase">{text}</h3>
+      <h2 class="mt-3 hidden md:block text-sm font-medium uppercase">{text}</h2>
       <div className="absolute inset-x-0 bg-gray bg-opacity-25 h-[2px] top-4"></div>
     </li>
   );

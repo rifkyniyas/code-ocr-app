@@ -5,7 +5,7 @@ const FeedbackForm = () => {
   return (
     <>
       <div className="bg-gray bg-opacity-25 h-[1px] w-full"></div>
-      <section class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+      <section class="py-8 lg:py-16 px-4 mx-auto max-w-5xl" id="feedback">
         <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center">
           Provide Feedback
         </h2>

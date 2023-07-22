@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 import LoadingStatus from "@/components/LoadingStatus";
 import ImageInput from "@/components/ImageInput";
 import FormSteps from "@/components/FormSteps";
-
+import BuyMeACoffee from "@/components/BuyMeACoffee";
 const displayForm = (formState) => {
   switch (formState) {
     case "waitingUpload":
@@ -59,6 +59,7 @@ export default function Home() {
   return (
     <>
       <Header />
+      <BuyMeACoffee />
       {/* Hero Section */}
       <section class="">
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
@@ -70,7 +71,7 @@ export default function Home() {
             Never again! Extract code from images with few clicks and start
             using in your project right away.
           </p>
-          <div className="py-5 bg-white shadow-md rounded">
+          <div className="pt-5 pb-10 bg-white shadow-md rounded">
             <FormSteps />
             {ocr.loggedData.isLoadingComplete ? (
               displayForm(imageData.step)
@@ -85,6 +86,12 @@ export default function Home() {
       </section>
 
       <FeedbackForm />
+      <div className="bg-gray bg-opacity-25 h-[1px] w-full"></div>
+      <div className="py-8 px-4 my-10 rounded mx-auto max-w-5xl bg-white">
+        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center">
+          Support My Work
+        </h2>
+      </div>
       <Footer />
     </>
   );

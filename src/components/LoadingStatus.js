@@ -13,7 +13,7 @@ const LoadingStatus = ({ message, percentage }) => {
         <div className="flex justify-center items-center font-semibold text-center">
           <p>{message.charAt(0).toUpperCase() + message.slice(1)}</p>
           &nbsp;&#45;&nbsp;
-          <span>{percentage}&#37;</span>
+          <span>{Math.ceil(percentage)}&#37;</span>
         </div>
       )}
     </div>
