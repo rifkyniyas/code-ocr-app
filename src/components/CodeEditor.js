@@ -74,13 +74,6 @@ const CodeEditor = () => {
 
           <div className="flex items-center gap-x-6">
             <button
-              onClick={() => setIsSettingsOpen((prevSetting) => !prevSetting)}
-              className="flex items-center gap-x-2 hover:text-text"
-            >
-              <Icon icon="carbon:settings" className="w-5 h-5" />
-              <span>Settings</span>
-            </button>
-            <button
               onClick={() => setCodeValue(formatCode(codeValue))}
               className="flex items-center gap-x-2 text-sm hover:text-text"
             >
@@ -99,12 +92,19 @@ const CodeEditor = () => {
               <Icon icon="iconamoon:copy-light" className="w-5 h-5" />
               <span>Copy</span>
             </button>
+            <button
+              onClick={() => setIsSettingsOpen((prevSetting) => !prevSetting)}
+              className="flex items-center gap-x-2 hover:text-text"
+            >
+              <Icon icon="carbon:settings" className="w-5 h-5" />
+              <span> {isSettingsOpen ? "Close" : "Settings"} </span>
+            </button>
           </div>
         </div>
 
         <div className="relative rounded-b-md overflow-hidden shadow-2xl">
           {isSettingsOpen && (
-            <div className="absolute inset-0 bg-white text-text z-50 px-5 py-3 space-y-4">
+            <div className="absolute inset-0 bg-white text-text z-10 px-5 py-3 space-y-4">
               <ThemeSelector />
               <LanguageSelector />
             </div>

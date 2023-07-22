@@ -29,6 +29,8 @@ const LanguageSelector = () => {
         defaultValue={languageOptions[defaultIndex]}
         isSearchable={true}
         name="languageSelector"
+        menuPortalTarget={document.body}
+        styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
         onChange={(newLang) => {
           console.log(newLang);
           dispatch(updateLanguage(newLang.value));

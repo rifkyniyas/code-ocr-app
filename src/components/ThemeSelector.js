@@ -28,6 +28,8 @@ const ThemeSelector = () => {
         defaultValue={themeOptions[8]} //Select VS code
         isSearchable={true}
         name="editorTheme"
+        menuPortalTarget={document.body}
+        styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
         onChange={(newTheme) => {
           dispatch(updateTheme(newTheme.value));
         }}
