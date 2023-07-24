@@ -88,29 +88,39 @@ export default function Home() {
 
       <FeedbackForm />
       <div className="bg-gray bg-opacity-25 h-[1px] w-full"></div>
-      <div className="py-8 px-4 my-10 rounded mx-auto max-w-screen-md bg-white">
+      <div className="py-8 px-4 my-10 rounded mx-auto max-w-screen-md shadow-md bg-white">
         <h2 class="mb-5 text-4xl tracking-tight font-extrabold text-center">
           Support My Work
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="flex justify-center items-center">
+        <div className="grid grid-cols-1 md:grid-cols-12">
+          <div className="flex justify-center items-center col-span-4">
             <Icon
               icon="line-md:buy-me-a-coffee-twotone"
               className="w-24 h-24 text-primary "
             />
           </div>
-          <div>
-            <p>
-              Hey there,👋 As an open source contributor, I pour my heart into
-              crafting incredible features for our web app. Your support means
-              the world! Join our community on Buy Me a Coffee!
-              <br />
-              Make a one-time donation or become a recurring supporter. Every
-              contribution, big or small, makes an impact on our journey. Your
-              support fuels innovation! Other ways to help: Provide your
-              feedback Thankyou! Let's build a brighter future for our app and
-              innovation!
+          <div className="col-span-8">
+            <p className="mb-1">
+              Hey, hope you enjoyed using the app and it was able to save your
+              time. It takes considerable amount of time and effort to build
+              these tools and I will work on improving the experience on this
+              app. This will remain totally free to use. You can always show
+              your support by providing your{" "}
+              <a
+                href="#feedback"
+                className="underline underline-offset-2 text-primary hover:no-underline"
+              >
+                feedback
+              </a>
+              .
             </p>
+            <p className="mb-1">
+              If you are <strong>able to and willing to</strong> please consider
+              buying me a cup of coffee. You can make a one-time donation or
+              become a recurring supporter. Every contribution, big or small,
+              helps me to build more tools empowering your digital experience.
+            </p>
+            <p>Thank you and have a beautiful day, my friend!</p>
             <a
               href="https://www.buymeacoffee.com/rifkyniyas"
               target="_blank"
