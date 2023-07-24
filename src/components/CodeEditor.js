@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateNotification } from "@/redux/notificationSlice";
 import prettier from "prettier/standalone";
 import parserBabel from "prettier/parser-babel";
 
@@ -36,6 +37,7 @@ const formatCode = (code) => {
 };
 
 const CodeEditor = () => {
+  const dispatch = useDispatch();
   const { name, extractedCode } = useSelector((state) => state.imageData);
   const initalCode = extractedCode ? formatCode(extractedCode) : "";
   const [codeValue, setCodeValue] = useState(initalCode);
@@ -87,8 +89,14 @@ const CodeEditor = () => {
               onClick={() => {
                 navigator.clipboard
                   .writeText(codeValue)
-                  .then(() => console.log("Code snippet copied to clipboard"))
-                  .catch((e) => console.log("Unable to copy code" + e));
+                  .then(() =>
+                    dispatch(
+                      updateNotification("Code snippet copied to clipboard")
+                    )
+                  )
+                  .catch((err) =>
+                    dispatch(updateNotification("An error occured in copying"))
+                  );
               }}
               className="flex items-center gap-x-2 text-sm hover:text-text"
             >

@@ -8,6 +8,7 @@ import CodeEditor from "@/components/CodeEditor";
 import CropImage from "@/components/CropImage";
 import FeedbackForm from "@/components/FeedbackForm";
 import Footer from "@/components/Footer";
+import Notification from "@/components/Notification";
 import LoadingStatus from "@/components/LoadingStatus";
 import ImageInput from "@/components/ImageInput";
 import FormSteps from "@/components/FormSteps";
@@ -85,7 +86,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      <Notification />
       <FeedbackForm />
       <div className="bg-gray bg-opacity-25 h-[1px] w-full"></div>
       <div className="py-8 px-4 my-10 rounded mx-auto max-w-screen-md shadow-md bg-white">
