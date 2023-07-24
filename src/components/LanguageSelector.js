@@ -17,7 +17,6 @@ const LanguageSelector = () => {
         label: lang.charAt(0).toUpperCase() + lang.slice(1), //Capitalize the first letter
       };
     });
-  console.log(languageOptions);
   return (
     <div className="flex flex-col">
       <label htmlFor="langSelect" className="text-left font-medium mb-2">
@@ -32,7 +31,6 @@ const LanguageSelector = () => {
         menuPortalTarget={document.body}
         styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
         onChange={(newLang) => {
-          console.log(newLang);
           dispatch(updateLanguage(newLang.value));
         }}
         options={languageOptions}

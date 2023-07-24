@@ -1,5 +1,50 @@
 import { Icon } from "@iconify/react";
-import React from "react";
+import { Formik, Form, useField } from "formik";
+import * as Yup from "yup";
+
+const TextInput = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
+  return (
+    <div className="mb-3">
+      <label
+        htmlFor={props.id || props.name}
+        className="block mb-2 text-sm outline-none font-medium"
+      >
+        {label}
+      </label>
+      <input
+        {...field}
+        {...props}
+        className="px-3 py-2 text-sm rounded outline-primary w-full border border-gray"
+      />
+      {meta.touched && meta.error ? (
+        <p className="text-red-400 text-xs">{meta.error}</p>
+      ) : null}
+    </div>
+  );
+};
+
+const TextAreaInput = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
+  return (
+    <div className="mb-3">
+      <label
+        htmlFor={props.id || props.name}
+        className="block mb-2 text-sm outline-none font-medium"
+      >
+        {label}
+      </label>
+      <textarea
+        {...field}
+        {...props}
+        className="px-3 py-2 text-sm rounded outline-primary w-full border border-gray"
+      ></textarea>
+      {meta.touched && meta.error ? (
+        <p className="text-red-400 text-xs">{meta.error}</p>
+      ) : null}
+    </div>
+  );
+};
 
 const FeedbackForm = () => {
   return (
@@ -13,40 +58,68 @@ const FeedbackForm = () => {
           Ran into an issue? Looking for a new feature? Let me know of your
           thoughts and I will reach back to you shortly
         </p>
-        <form action="#" class="space-y-8">
-          <div>
-            <label
-              for="email"
-              class="block mb-2 text-sm outline-none font-medium "
-            >
-              Your email
-            </label>
-            <input
+        <Formik
+          initialValues={{
+            email: "",
+            message: "",
+          }}
+          validationSchema={Yup.object({
+            email: Yup.string()
+              .email("Oops, Invalid email address")
+              .required("Hey, A vaild Email address is required"),
+            message: Yup.string()
+              .min(10, "Don't be shy, we can talk a little more.")
+              .max(
+                500,
+                "Hey, shall have a brief conversation? Just a little brief."
+              )
+              .required("Well, I am looking for your message"),
+          })}
+          onSubmit={async (values, { setSubmitting }) => {
+            try {
+              setSubmitting(false);
+              // Send form data to FormKeep API
+              console.log(process.env.NEXT_PUBLIC_formActionURL);
+              const response = await fetch(
+                process.env.NEXT_PUBLIC_formActionURL,
+                {
+                  method: "POST",
+                  body: JSON.stringify(values),
+                  headers: {
+                    Accept: "application/javascript",
+                    "Content-Type": "application/json",
+                  },
+                }
+              );
+              // console.log(response);
+              const jsonData = await response.json();
+              console.log(jsonData);
+            } catch (err) {
+              console.log("An error has occured" + err);
+            }
+          }}
+        >
+          <Form>
+            <TextInput
+              label="Your Email"
+              name="email"
               type="email"
-              id="email"
-              class="px-3 py-2 text-sm rounded outline-primary w-full border border-gray"
-              placeholder="example@email.com"
-              required
+              placeholder="name@email.com"
             />
-          </div>
-          <div class="sm:col-span-2">
-            <label for="message" class="block mb-2 text-sm font-medium ">
-              Your message
-            </label>
-            <textarea
-              id="message"
-              rows="6"
-              class="block px-3 py-2 w-full text-sm rounded outline-primary border border-gray"
-              placeholder="Leave a comment..."
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            class="py-3 px-5 text-sm font-medium text-center text-white bg-cta hover:bg-opacity-50 rounded"
-          >
-            Submit
-          </button>
-        </form>
+            <TextAreaInput
+              label="Your message"
+              name="message"
+              rows={6}
+              placeholder="Leave your comment"
+            />
+            <button
+              type="submit"
+              class="py-3 px-5 text-sm font-medium text-center text-white bg-cta hover:bg-opacity-50 rounded"
+            >
+              Submit
+            </button>
+          </Form>
+        </Formik>
 
         <div className="flex justify-center items-center gap-x-6 my-5">
           <span className="block h-[1px] w-1/2 bg-gray bg-opacity-25"></span>

@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import CodeMirror from "@uiw/react-codemirror";
 import prettier from "prettier/standalone";
 import parserBabel from "prettier/parser-babel";
-import ThemeSelector from "./ThemeSelector";
-import LanguageSelector from "./LanguageSelector";
+
+import CodeMirror from "@uiw/react-codemirror";
 import { loadLanguage } from "@uiw/codemirror-extensions-langs";
 //Themes
 import { androidstudio } from "@uiw/codemirror-theme-androidstudio";
@@ -20,19 +19,23 @@ import { xcodeDark } from "@uiw/codemirror-theme-xcode";
 import { xcodeLight } from "@uiw/codemirror-theme-xcode";
 import { Icon } from "@iconify/react";
 
-const CodeEditor = () => {
-  const formatCode = (code) => {
-    try {
-      return prettier.format(code, {
-        parser: "babel",
-        plugins: [parserBabel],
-      });
-    } catch (error) {
-      console.error("Error formatting code:", error);
-      return code;
-    }
-  };
+import ThemeSelector from "./ThemeSelector";
+import LanguageSelector from "./LanguageSelector";
+import Notification from "./Notification";
 
+const formatCode = (code) => {
+  try {
+    return prettier.format(code, {
+      parser: "babel",
+      plugins: [parserBabel],
+    });
+  } catch (error) {
+    console.error("Error formatting code:", error);
+    return code;
+  }
+};
+
+const CodeEditor = () => {
   const { name, extractedCode } = useSelector((state) => state.imageData);
   const initalCode = extractedCode ? formatCode(extractedCode) : "";
   const [codeValue, setCodeValue] = useState(initalCode);
@@ -96,7 +99,10 @@ const CodeEditor = () => {
               onClick={() => setIsSettingsOpen((prevSetting) => !prevSetting)}
               className="flex items-center gap-x-2 hover:text-text"
             >
-              <Icon icon="carbon:settings" className="w-5 h-5" />
+              <Icon
+                icon={isSettingsOpen ? "carbon:close" : "carbon:settings"}
+                className="w-5 h-5"
+              />
               <span> {isSettingsOpen ? "Close" : "Settings"} </span>
             </button>
           </div>
