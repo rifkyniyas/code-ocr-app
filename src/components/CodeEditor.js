@@ -22,7 +22,7 @@ import { Icon } from "@iconify/react";
 
 import ThemeSelector from "./ThemeSelector";
 import LanguageSelector from "./LanguageSelector";
-import Notification from "./Notification";
+import { toast } from "react-toastify";
 
 const formatCode = (code) => {
   try {
@@ -89,14 +89,8 @@ const CodeEditor = () => {
               onClick={() => {
                 navigator.clipboard
                   .writeText(codeValue)
-                  .then(() =>
-                    dispatch(
-                      updateNotification("Code snippet copied to clipboard")
-                    )
-                  )
-                  .catch((err) =>
-                    dispatch(updateNotification("An error occured in copying"))
-                  );
+                  .then(() => toast("Code snippet copied to clipboard"))
+                  .catch((err) => toast("An error occured in copying"));
               }}
               className="flex items-center gap-x-2 text-sm hover:text-text"
             >

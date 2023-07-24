@@ -8,12 +8,14 @@ import CodeEditor from "@/components/CodeEditor";
 import CropImage from "@/components/CropImage";
 import FeedbackForm from "@/components/FeedbackForm";
 import Footer from "@/components/Footer";
-import Notification from "@/components/Notification";
+import { ToastContainer } from "react-toastify";
 import LoadingStatus from "@/components/LoadingStatus";
 import ImageInput from "@/components/ImageInput";
 import FormSteps from "@/components/FormSteps";
 import BuyMeACoffee from "@/components/BuyMeACoffee";
 import { Icon } from "@iconify/react";
+import "react-toastify/dist/ReactToastify.min.css";
+
 const displayForm = (formState) => {
   switch (formState) {
     case "waitingUpload":
@@ -86,7 +88,20 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <Notification />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        pauseOnHover={false}
+        draggable
+        draggablePercent={80}
+        theme="light"
+        progressClassName="bg-primary"
+      />
       <FeedbackForm />
       <div className="bg-gray bg-opacity-25 h-[1px] w-full"></div>
       <div className="py-8 px-4 my-10 rounded mx-auto max-w-screen-md shadow-md bg-white">
