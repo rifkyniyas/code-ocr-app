@@ -1,5 +1,6 @@
 import { Icon } from "@iconify/react";
 import { Formik, Form, useField } from "formik";
+import { toast } from "react-toastify";
 import * as Yup from "yup";
 
 const TextInput = ({ label, ...props }) => {
@@ -75,7 +76,7 @@ const FeedbackForm = () => {
               )
               .required("Well, I am looking for your message"),
           })}
-          onSubmit={async (values, { setSubmitting }) => {
+          onSubmit={async (values, { setSubmitting, resetForm }) => {
             try {
               setSubmitting(false);
               // Send form data to FormKeep API
@@ -91,11 +92,12 @@ const FeedbackForm = () => {
                   },
                 }
               );
-              // console.log(response);
-              const jsonData = await response.json();
-              console.log(jsonData);
+              toast.success("Your feedback was submitted successfully");
+              return resetForm();
             } catch (err) {
-              console.log("An error has occured" + err);
+              return toast.error(
+                "An error has occured while submitting your feedback. Please try again."
+              );
             }
           }}
         >

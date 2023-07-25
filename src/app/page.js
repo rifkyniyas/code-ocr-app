@@ -90,7 +90,7 @@ export default function Home() {
       </section>
       <ToastContainer
         position="bottom-right"
-        autoClose={5000}
+        autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -100,7 +100,6 @@ export default function Home() {
         draggable
         draggablePercent={80}
         theme="light"
-        progressClassName="bg-primary"
       />
       <FeedbackForm />
       <div className="bg-gray bg-opacity-25 h-[1px] w-full"></div>

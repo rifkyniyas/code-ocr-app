@@ -79,7 +79,14 @@ const CodeEditor = () => {
 
           <div className="flex items-center gap-x-6">
             <button
-              onClick={() => setCodeValue(formatCode(codeValue))}
+              onClick={() => {
+                try {
+                  setCodeValue(formatCode(codeValue));
+                  toast.info("Code formatted successfully");
+                } catch (e) {
+                  toast.error("Unable to format code");
+                }
+              }}
               className="flex items-center gap-x-2 text-sm hover:text-text"
             >
               <Icon icon="uil:align-left" className="w-5 h-5" />
@@ -89,8 +96,8 @@ const CodeEditor = () => {
               onClick={() => {
                 navigator.clipboard
                   .writeText(codeValue)
-                  .then(() => toast("Code snippet copied to clipboard"))
-                  .catch((err) => toast("An error occured in copying"));
+                  .then(() => toast.info("Code snippet copied to clipboard"))
+                  .catch((err) => toast.error("An error occured in copying"));
               }}
               className="flex items-center gap-x-2 text-sm hover:text-text"
             >
