@@ -1,65 +1,16 @@
 "use client";
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { updateWorker, updateLog } from "@/redux/ocrSlice";
-import { createWorker } from "tesseract.js";
+import { Provider } from "react-redux";
+import { store } from "@/redux/store";
+import { Icon } from "@iconify/react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import Header from "@/components/Header";
-import CodeEditor from "@/components/CodeEditor";
-import CropImage from "@/components/CropImage";
+import MainForm from "@/components/MainForm";
 import FeedbackForm from "@/components/FeedbackForm";
 import Footer from "@/components/Footer";
-import { ToastContainer } from "react-toastify";
-import LoadingStatus from "@/components/LoadingStatus";
-import ImageInput from "@/components/ImageInput";
-import FormSteps from "@/components/FormSteps";
 import BuyMeACoffee from "@/components/BuyMeACoffee";
-import { Icon } from "@iconify/react";
-import "react-toastify/dist/ReactToastify.min.css";
-
-const displayForm = (formState) => {
-  switch (formState) {
-    case "waitingUpload":
-      return <ImageInput />;
-    case "waitingCrop":
-      return <CropImage />;
-    case "isExtracted":
-      return <CodeEditor />;
-  }
-};
 
 export default function Home() {
-  const imageData = useSelector((state) => state.imageData);
-  const ocr = useSelector((state) => state.ocr);
-  const dispatch = useDispatch();
-
-  const loadWorker = async () => {
-    const worker = await createWorker({
-      logger: (logData) => {
-        const status = logData.status;
-        console.log(logData);
-        if (
-          status == "initialized api" ||
-          (status == "recognizing text" && logData.progress == 1)
-        )
-          return dispatch(updateLog({ isLoadingComplete: true }));
-        dispatch(updateLog(logData));
-      },
-    });
-    dispatch(updateWorker(worker));
-
-    await worker.load();
-    await worker.loadLanguage("eng");
-    await worker.initialize("eng");
-  };
-
-  useEffect(() => {
-    loadWorker();
-
-    return async () => {
-      await ocr.worker.terminate();
-    };
-  }, []);
-
   return (
     <>
       <Header />
@@ -75,22 +26,14 @@ export default function Home() {
             Never again! Extract code from images with few clicks and start
             using in your project right away.
           </p>
-          <div className="pt-5 pb-10 bg-white shadow-md rounded">
-            <FormSteps />
-            {ocr.loggedData.isLoadingComplete ? (
-              displayForm(imageData.step)
-            ) : (
-              <LoadingStatus
-                message={ocr.loggedData.status}
-                percentage={ocr.loggedData.progress * 100}
-              />
-            )}
-          </div>
+          <Provider store={store}>
+            <MainForm />
+          </Provider>
         </div>
       </section>
       <ToastContainer
         position="bottom-right"
-        autoClose={3000}
+        autoClose={1000} //1s
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -102,6 +45,7 @@ export default function Home() {
         theme="light"
       />
       <FeedbackForm />
+      {/* Support my work section */}
       <div className="bg-gray bg-opacity-25 h-[1px] w-full"></div>
       <div className="py-8 px-4 my-10 rounded mx-auto max-w-screen-md shadow-md bg-white">
         <h2 class="mb-5 text-4xl tracking-tight font-extrabold text-center">
@@ -147,6 +91,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      {/* End of support my work section */}
       <Footer />
     </>
   );
