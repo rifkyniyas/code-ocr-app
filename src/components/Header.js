@@ -8,8 +8,8 @@ const Header = () => {
       <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
         <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
           <a
-            className="text-sm font-bold leading-relaxed mr-4 py-2 whitespace-nowrap uppercase text-white
-              flex justify-center items-center gap-x-2"
+            className="font-bold leading-relaxed mr-4 my-2 whitespace-nowrap uppercase text-white
+              flex justify-center items-center gap-x-2 border-b hover:border-b-white"
             href="/"
           >
             <Icon icon={"ph:code-simple-bold"} />
@@ -31,32 +31,33 @@ const Header = () => {
           }
           id="example-navbar-danger"
         >
-          <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+          <ul className="flex flex-col gap-y-2 lg:flex-row lg:items-center list-none lg:ml-auto">
             <li className="nav-item">
               <a
                 className="px-3 py-2 flex items-center text-sm font-bold leading-snug 
-                text-white hover:underline underline-offset-4"
+                text-white hover:underline underline-offset-4 ml-2"
                 href="#"
               >
-                <span className="ml-2">Home</span>
+                Home
               </a>
             </li>
             <li className="nav-item">
               <a
                 className="px-3 py-2 flex items-center text-sm font-bold leading-snug 
-                text-white hover:underline underline-offset-4"
+                text-white hover:underline underline-offset-4 ml-2"
                 href="#feedback"
               >
-                <span className="ml-2">Feedback</span>
+                Feedback
               </a>
             </li>
             <li className="nav-item">
               <a
-                className="px-3 py-2 flex items-center text-sm font-bold leading-snug 
-                text-white hover:underline underline-offset-4"
-                href="#pablo"
+                className="px-3 py-2 mt-5 cursor-pointer rounded-md font-semibold 
+                border-2 border-cta hover:border-transparent hover:bg-cta text-white ml-2"
+                href="https://www.buymeacoffee.com/rifkyniyas"
+                target="_blank"
               >
-                <span className="ml-2">Support My Work</span>
+                Support My Work
               </a>
             </li>
           </ul>

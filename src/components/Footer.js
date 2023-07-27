@@ -1,59 +1,93 @@
-import React from "react";
+import { Icon } from "@iconify/react";
 
 const Footer = () => {
   return (
-    <footer class="p-4 bg-primary text-white md:p-8 lg:p-10">
-      <div class="mx-auto max-w-screen-xl text-center">
-        <a
-          href="#"
-          class="flex justify-center items-center text-2xl font-semibold"
-        >
-          Flowbite
-        </a>
-        <p class="my-6">
-          Open-source library of over 400+ web components and interactive
-          elements built for better web.
-        </p>
-        <ul class="flex flex-wrap justify-center items-center mb-6">
-          <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6 ">
-              About
+    <footer class="p-4 bg-white sm:p-6 dark:bg-gray-800">
+      <div class="mx-auto max-w-screen-xl">
+        <div class="md:flex md:justify-between">
+          <div class="mb-6 md:mb-0">
+            <a href="https://flowbite.com" class="flex items-center">
+              <img
+                src="https://flowbite.com/docs/images/logo.svg"
+                class="mr-3 h-8"
+                alt="FlowBite Logo"
+              />
+              <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                Flowbite
+              </span>
             </a>
-          </li>
-          <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6">
-              Premium
+          </div>
+          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+            <div>
+              <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+                Resources
+              </h2>
+              <ul class="text-gray-600 dark:text-gray-400">
+                <li class="mb-4">
+                  <a href="https://flowbite.com" class="hover:underline">
+                    Flowbite
+                  </a>
+                </li>
+                <li>
+                  <a href="https://tailwindcss.com/" class="hover:underline">
+                    Tailwind CSS
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+                Follow us
+              </h2>
+              <ul class="text-gray-600 dark:text-gray-400">
+                <li class="mb-4">
+                  <a
+                    href="https://github.com/themesberg/flowbite"
+                    class="hover:underline "
+                  >
+                    Github
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://discord.gg/4eeurUVvTy"
+                    class="hover:underline"
+                  >
+                    Discord
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+                Legal
+              </h2>
+              <ul class="text-gray-600 dark:text-gray-400">
+                <li class="mb-4">
+                  <a href="#" class="hover:underline">
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="hover:underline">
+                    Terms &amp; Conditions
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+        <div class="sm:flex sm:items-center sm:justify-between">
+          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+            &cpy;{new Date.getFullYear()}
+            <a href="https://flowbite.com" class="hover:underline">
+              Flowbite™
             </a>
-          </li>
-          <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6 ">
-              Campaigns
-            </a>
-          </li>
-          <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6">
-              Blog
-            </a>
-          </li>
-          <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6">
-              Affiliate Program
-            </a>
-          </li>
-          <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6">
-              FAQs
-            </a>
-          </li>
-          <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6">
-              Contact
-            </a>
-          </li>
-        </ul>
-        <span class="text-sm sm:text-center ">
-          &copy; {new Date().getFullYear()}. All Rights Reserved.
-        </span>
+            . All Rights Reserved.
+          </span>
+          <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0"></div>
+        </div>
       </div>
     </footer>
   );
