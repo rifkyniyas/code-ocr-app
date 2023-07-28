@@ -6,10 +6,11 @@ const Header = () => {
   return (
     <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-primary">
       <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-        <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+        <div className="w-full relative flex items-center justify-between lg:w-auto lg:static lg:block lg:justify-start">
           <a
-            className="font-bold leading-relaxed mr-4 my-2 whitespace-nowrap uppercase text-white
-              flex justify-center items-center gap-x-2 border-b hover:border-b-white"
+            className="text-xl font-semibold my-3 pb-1 uppercase text-white
+              flex justify-center items-center gap-x-2 
+              border-b border-b-transparent hover:border-b-white"
             href="/"
           >
             <Icon icon={"ph:code-simple-bold"} />
@@ -31,10 +32,10 @@ const Header = () => {
           }
           id="example-navbar-danger"
         >
-          <ul className="flex flex-col gap-y-2 lg:flex-row lg:items-center list-none lg:ml-auto">
+          <ul className="flex flex-col uppercase font-semibold gap-y-2 lg:flex-row lg:items-center list-none lg:ml-auto">
             <li className="nav-item">
               <a
-                className="px-3 py-2 flex items-center text-sm font-bold leading-snug 
+                className="px-3 py-2 flex items-center text-sm 
                 text-white hover:underline underline-offset-4 ml-2"
                 href="#"
               >
@@ -43,7 +44,7 @@ const Header = () => {
             </li>
             <li className="nav-item">
               <a
-                className="px-3 py-2 flex items-center text-sm font-bold leading-snug 
+                className="px-3 py-2 flex items-center text-sm
                 text-white hover:underline underline-offset-4 ml-2"
                 href="#feedback"
               >
@@ -52,8 +53,8 @@ const Header = () => {
             </li>
             <li className="nav-item">
               <a
-                className="px-3 py-2 mt-5 cursor-pointer rounded-md font-semibold 
-                border-2 border-cta hover:border-transparent hover:bg-cta text-white ml-2"
+                className="px-3 py-2 mt-5 cursor-pointer rounded font-semibold 
+                border border-white hover:border-transparent hover:bg-cta text-white ml-2"
                 href="https://www.buymeacoffee.com/rifkyniyas"
                 target="_blank"
               >
