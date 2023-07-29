@@ -33,8 +33,8 @@ const CropImage = () => {
   };
   return (
     <div className="max-w-5xl mx-auto my-3 ">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4">
-        <div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 gap-y-3">
+        <div className="order-1">
           <h3 className="text-lg font-medium mb-3">Original Image</h3>
           <Cropper
             src={originalData} //Inital data of input image
@@ -43,10 +43,10 @@ const CropImage = () => {
             ref={cropperRef}
           />
         </div>
-        <div>
+        <div className="order-3 lg:order-2">
           <h3 className="text-lg font-medium mb-3">Cropped Image preview </h3>
           {isCropped ? (
-            <div className="relative max-h-[500px] min-h-[200px] w-full">
+            <div className="relative max-h-[500px] min-h-[200px] w-full border border-dashed border-gray">
               <Image
                 src={croppedData}
                 alt="Cropped Preview"
@@ -55,7 +55,10 @@ const CropImage = () => {
               />
             </div>
           ) : (
-            <div className="flex flex-col h-full justify-center items-center text-gray">
+            <div
+              className="flex flex-col max-h-[500px] min-h-[200px] justify-center items-center
+            border border-dashed border-gray text-gray"
+            >
               <Icon
                 icon="material-symbols:broken-image-outline-sharp"
                 className="w-10 h-10"
@@ -64,7 +67,7 @@ const CropImage = () => {
             </div>
           )}
         </div>
-        <div className="col-span-2 flex justify-center mt-3 mb-2">
+        <div className="col-span-1 order-2 lg:order-3 md:col-span-2 flex justify-center mt-3 mb-2">
           <button
             onClick={handleCrop}
             className="py-3 px-5 text-sm font-medium text-center text-text 
@@ -73,7 +76,7 @@ const CropImage = () => {
             Crop and Preview
           </button>
         </div>
-        <div className="col-span-2">
+        <div className="col-span-1 order-4 md:col-span-2">
           <LanguageSelector />
         </div>
       </div>

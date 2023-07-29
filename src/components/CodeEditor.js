@@ -90,7 +90,7 @@ const CodeEditor = () => {
               className="flex items-center gap-x-2 text-sm hover:text-text"
             >
               <Icon icon="uil:align-left" className="w-5 h-5" />
-              <span>Format</span>
+              <span className="hidden lg:block">Format</span>
             </button>
             <button
               onClick={() => {
@@ -102,7 +102,7 @@ const CodeEditor = () => {
               className="flex items-center gap-x-2 text-sm hover:text-text"
             >
               <Icon icon="iconamoon:copy-light" className="w-5 h-5" />
-              <span>Copy</span>
+              <span className="hidden lg:block">Copy</span>
             </button>
             <button
               onClick={() => setIsSettingsOpen((prevSetting) => !prevSetting)}
@@ -112,7 +112,9 @@ const CodeEditor = () => {
                 icon={isSettingsOpen ? "carbon:close" : "carbon:settings"}
                 className="w-5 h-5"
               />
-              <span> {isSettingsOpen ? "Close" : "Settings"} </span>
+              <span className="hidden lg:block">
+                {isSettingsOpen ? "Close" : "Settings"}
+              </span>
             </button>
           </div>
         </div>

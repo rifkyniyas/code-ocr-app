@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .main-container {
+        @apply py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-12
+    }
+}

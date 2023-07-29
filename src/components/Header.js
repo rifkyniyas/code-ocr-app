@@ -32,28 +32,28 @@ const Header = () => {
           }
           id="example-navbar-danger"
         >
-          <ul className="flex flex-col uppercase font-semibold gap-y-2 lg:flex-row lg:items-center list-none lg:ml-auto">
-            <li className="nav-item">
+          <ul className="flex flex-col uppercase font-semibold pb-3 lg:pb-0 lg:flex-row lg:items-center list-none lg:ml-auto">
+            <li className="px-3 py-2">
               <a
-                className="px-3 py-2 flex items-center text-sm 
+                className="flex items-center text-sm 
                 text-white hover:underline underline-offset-4 ml-2"
                 href="#"
               >
                 Home
               </a>
             </li>
-            <li className="nav-item">
+            <li className="px-3 py-2">
               <a
-                className="px-3 py-2 flex items-center text-sm
+                className="flex items-center text-sm
                 text-white hover:underline underline-offset-4 ml-2"
                 href="#feedback"
               >
                 Feedback
               </a>
             </li>
-            <li className="nav-item">
+            <li className="px-3 py-2">
               <a
-                className="px-3 py-2 my-2 mt-5 cursor-pointer rounded font-semibold 
+                className="px-3 py-1 my-2 mt-5 cursor-pointer rounded font-semibold 
                 border border-white hover:border-transparent hover:bg-cta text-white ml-2"
                 href="https://www.buymeacoffee.com/rifkyniyas"
                 target="_blank"

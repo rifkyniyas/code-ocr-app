@@ -21,11 +21,11 @@ const ImageInput = () => {
   };
   if (imageData.name && imageData.originalData) {
     return (
-      <div className="max-w-5xl my-3 mx-auto flex flex-col items-center justify-center px-6 py-10">
+      <div className="max-w-5xl my-3 mx-auto flex flex-col items-center justify-center px-6 py-5">
         <h3 className="text-lg font-medium mb-1">
           Image Uploaded : {imageData.name}
         </h3>
-        <figure className="relative max-h-[500px] min-h-[250px] w-full">
+        <figure className="relative max-h-[500px] min-h-[250px] border border-dashed border-gray w-full">
           <Image
             src={imageData.originalData}
             alt={`Uploaded Image Preview for: ${imageData.name}`}

@@ -55,7 +55,7 @@ const MainForm = () => {
     <div className="pt-5 pb-10 bg-white shadow-md rounded">
       <FormSteps />
       {ocr.loggedData.isLoadingComplete ? (
-        displayForm(imageData.step)
+        <div className="px-8 md:px-0">{displayForm(imageData.step)}</div>
       ) : (
         <LoadingStatus
           message={ocr.loggedData.status}
