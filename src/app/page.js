@@ -8,13 +8,11 @@ import Header from "@/components/Header";
 import MainForm from "@/components/MainForm";
 import FeedbackForm from "@/components/FeedbackForm";
 import Footer from "@/components/Footer";
-import BuyMeACoffee from "@/components/BuyMeACoffee";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <BuyMeACoffee />
       {/* Hero Section */}
       <section class="main-container text-center">
         <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
