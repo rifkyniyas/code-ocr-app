@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateNotification } from "@/redux/notificationSlice";
 import prettier from "prettier/standalone";
 import parserBabel from "prettier/parser-babel";
 
@@ -39,8 +38,10 @@ const formatCode = (code) => {
 const CodeEditor = () => {
   const dispatch = useDispatch();
   const { name, extractedCode } = useSelector((state) => state.imageData);
-  const initalCode = extractedCode ? formatCode(extractedCode) : "";
-  const [codeValue, setCodeValue] = useState(initalCode);
+  // const initalCode = extractedCode ? formatCode(extractedCode) : "";
+  console.log(extractedCode);
+  // console.log(formatCode(extractedCode));
+  const [codeValue, setCodeValue] = useState(formatCode(extractedCode));
   const codeTheme = useSelector((state) => state.codeEditor.theme);
   const codeLanguage = useSelector((state) => state.codeEditor.language);
 
@@ -78,7 +79,7 @@ const CodeEditor = () => {
           </div>
 
           <div className="flex items-center gap-x-6">
-            <button
+            {/* <button
               onClick={() => {
                 try {
                   setCodeValue(formatCode(codeValue));
@@ -91,7 +92,7 @@ const CodeEditor = () => {
             >
               <Icon icon="uil:align-left" className="w-5 h-5" />
               <span className="hidden lg:block">Format</span>
-            </button>
+            </button> */}
             <button
               onClick={() => {
                 navigator.clipboard
@@ -119,7 +120,7 @@ const CodeEditor = () => {
           </div>
         </div>
 
-        <div className="relative rounded-b-md overflow-hidden shadow-2xl">
+        <div className="relative text-left rounded-b-md overflow-hidden shadow-2xl">
           {isSettingsOpen && (
             <div className="absolute inset-0 bg-white text-text z-10 px-5 py-3 space-y-4">
               <ThemeSelector />
@@ -133,7 +134,7 @@ const CodeEditor = () => {
             theme={themeMap[codeTheme] || vscodeDark}
             extensions={[loadLanguage(codeLanguage)]}
             data-gramm="false"
-            onChange={handleChange}
+            onChange={(value) => setCodeValue(value)}
           />
         </div>
       </div>
