@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateImgData, clearData } from "@/redux/imageDataSlice";
 import { readImageFile } from "@/utilities/imageUtils";
 import Image from "next/image";
+
 const ImageInput = () => {
   const imageData = useSelector((state) => state.imageData);
   const dispatch = useDispatch();

@@ -1,5 +1,6 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
+import InstructionsModal from "./InstructionsModal";
 import { Icon } from "@iconify/react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateImgData } from "@/redux/imageDataSlice";
@@ -7,6 +8,7 @@ import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import LanguageSelector from "./LanguageSelector";
 const CropImage = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { originalData, isCropped, croppedData } = useSelector(
     (state) => state.imageData
   );
@@ -67,7 +69,7 @@ const CropImage = () => {
             </div>
           )}
         </div>
-        <div className="col-span-1 order-2 lg:order-3 md:col-span-2 flex justify-center mt-3 mb-2">
+        <div className="col-span-1 order-2 lg:order-3 md:col-span-2 flex justify-center items-center gap-x-3 mt-3 mb-2">
           <button
             onClick={handleCrop}
             className="py-3 px-5 text-sm font-medium text-center text-text 
@@ -75,6 +77,16 @@ const CropImage = () => {
           >
             Crop and Preview
           </button>
+          <button
+            className="text-sm text-primary underline hover:no-underline"
+            onClick={() => setIsModalOpen(true)}
+          >
+            View instructions
+          </button>
+          <InstructionsModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
         </div>
         <div className="col-span-1 order-4 md:col-span-2">
           <LanguageSelector />
