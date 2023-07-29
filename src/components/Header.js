@@ -53,6 +53,16 @@ const Header = () => {
             </li>
             <li className="px-3 py-2">
               <a
+                className="flex items-center text-sm 
+                text-white hover:underline underline-offset-4 ml-2"
+                href="https://github.com/rifkyniyas/code-ocr-app"
+                target="_blank"
+              >
+                Github
+              </a>
+            </li>
+            <li className="px-3 py-2">
+              <a
                 className="px-3 py-1 my-2 mt-5 cursor-pointer rounded font-semibold 
                 border border-white hover:border-transparent hover:bg-cta text-white ml-2"
                 href="https://www.buymeacoffee.com/rifkyniyas"

@@ -65,7 +65,7 @@ const CodeEditor = () => {
 
   return (
     <div className="max-w-5xl mx-auto my-3">
-      <div className=" px-2 py-4 lg:px-12 lg:py-10 rounded">
+      <div className="px-2 py-4 lg:px-12 lg:py-10 rounded">
         <div
           className="flex items-center justify-between py-2 px-6 rounded-t-md 
       bg-primary text-white"
