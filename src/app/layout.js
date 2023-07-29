@@ -1,5 +1,5 @@
 import "./globals.css";
-
+import Script from "next/script";
 export const metadata = {
   title: "Code OCR App - Extract code from image snippets with few clicks.",
   description:
@@ -23,6 +23,21 @@ export default function RootLayout({ children }) {
           data-x_margin="18"
           data-y_margin="18"
         ></script>
+        <Script
+          strategy="lazyOnload"
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_ID}`}
+        />
+
+        <Script strategy="lazyOnload">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.GOOGLE_ANALYTICS_ID}', {
+            page_path: window.location.pathname,
+            });
+                `}
+        </Script>
       </body>
     </html>
   );
