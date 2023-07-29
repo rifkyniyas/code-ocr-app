@@ -53,7 +53,7 @@ const Header = () => {
             </li>
             <li className="nav-item">
               <a
-                className="px-3 py-2 mt-5 cursor-pointer rounded font-semibold 
+                className="px-3 py-2 my-2 mt-5 cursor-pointer rounded font-semibold 
                 border border-white hover:border-transparent hover:bg-cta text-white ml-2"
                 href="https://www.buymeacoffee.com/rifkyniyas"
                 target="_blank"
