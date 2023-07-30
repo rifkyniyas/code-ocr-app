@@ -1,34 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CODE OCR APP
 
-## Getting Started
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+![GitHub watchers](https://img.shields.io/github/watchers/rifkyniyas/code-ocr-app)
+![GitHub Repo stars](https://img.shields.io/github/stars/rifkyniyas/code-ocr-app)
+![GitHub forks](https://img.shields.io/github/forks/rifkyniyas/code-ocr-app)
 
-First, run the development server:
+Code OCR App enables developers to extract code from image snippets with just three steps.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+1. Upload your image
+2. Crop the necessary part
+3. Copy and start using in your project right away!
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Demo
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+https://www.loom.com/share/c5bde3251dcf4b94b30fda96cafc9ae7?sid=dbd563d2-30af-4839-930b-c83f1f9b23d1
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Feedback
 
-## Learn More
+Looking for any new features or facing any issues? Please fill out this short [form](https://code-ocr-app.vercel.app/#feedback) and provide your valuable feedback.
 
-To learn more about Next.js, take a look at the following resources:
+## Possible limitations
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. The extracted text might be inaccurate due to the limited capability of tesseract.js library.
+2. Code highlighting may have unexpected results if the extracted code is inaccurate.
+3. Code formatting is currently unavailable.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+We are currently working on fixing these issues.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is licenced under [MIT](https://github.com/rifkyniyas/code-ocr-app/blob/main/LICENSE.md)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## About Author
+
+[Personal Website](https://rifkyniyas.vercel.app/)
+
+[All Links](https://findrifky.netlify.app/)
+
+[Twitter](https://twitter.com/NiyasRifky)
+
+## Support
+
+<a href="https://www.buymeacoffee.com/rifkyniyas"> <img align="left" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="50" width="210" alt="rifkyniyas" /></a>
